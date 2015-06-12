@@ -25,6 +25,7 @@ public class HomeController {
 	// sua o day
 	// o day tiep tiep
 	// daay
+	// tiep
 	@RequestMapping(value = "/khongco", method = RequestMethod.GET)
 	public ResponseEntity<String> error() {
 		return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
