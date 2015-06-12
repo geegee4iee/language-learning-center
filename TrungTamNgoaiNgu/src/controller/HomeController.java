@@ -22,7 +22,7 @@ public class HomeController {
 		m.addAttribute("lst", lst);
 		return "index";
 	}
-
+	// sua o day
 	@RequestMapping(value = "/khongco", method = RequestMethod.GET)
 	public ResponseEntity<String> error() {
 		return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
