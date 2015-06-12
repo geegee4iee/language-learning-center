@@ -7,7 +7,7 @@ pageEncoding="UTF-8"%>
 
 
 <div class="page-header">
-  <h1>Tooi moi sua day <small>Subtext for header</small></h1>
+  <h1><small>Subtext for header</small></h1>
 </div>
 
 <div class="jumbotron">

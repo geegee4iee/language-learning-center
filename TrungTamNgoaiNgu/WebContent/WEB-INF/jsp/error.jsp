@@ -18,7 +18,6 @@
 					href="${pageContext.request.contextPath}${linkBack}">${linkContent }</a>
   </div>
   <div>
-  	tooi moi sua o day
   </div>
 </div>
 
