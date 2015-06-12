@@ -6,6 +6,7 @@
 <t:admin_layout title="Trang chủ">
 	<jsp:attribute name="content">
 		
+		
         <div id="page-wrapper">
 
             <div class="container-fluid">
