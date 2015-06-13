@@ -89,9 +89,7 @@ public class TaiKhoanController {
 			e1.printStackTrace();
 		}
 
-		model.addAttribute("user", register);
-
-		return "login";
+		return "redirect:/account/login";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)

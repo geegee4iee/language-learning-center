@@ -32,6 +32,23 @@ public class KyThiDAO {
 
 		return lst;
 	}
+	
+	public KyThi get(int idKyThi){
+		KyThi kt = null;
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+		
+		try {
+			sess.getTransaction().begin();
+			kt = (KyThi) sess.get(KyThi.class, idKyThi);
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return kt;
+	}
 
 	public List<KyThi> getStarted() {
 		List<KyThi> lst = new ArrayList<KyThi>();

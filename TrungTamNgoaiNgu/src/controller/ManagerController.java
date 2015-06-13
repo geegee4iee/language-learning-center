@@ -226,8 +226,10 @@ public class ManagerController {
 	@RequestMapping(value = "/kythi/{id}", method = RequestMethod.GET)
 	public String listDangKyThi(ModelMap m, @PathVariable("id") int kyThi) {
 		List<DangKyThi> lst = new KyThiBUS().getReg(kyThi);
+		KyThi kt = new KyThiBUS().get(kyThi);
 
 		m.addAttribute("lst", lst);
+		m.addAttribute("obj", kt);
 		return "dangkythiquantri";
 	}
 

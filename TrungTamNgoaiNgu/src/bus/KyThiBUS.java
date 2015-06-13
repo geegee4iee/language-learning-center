@@ -77,4 +77,8 @@ public class KyThiBUS {
 	public boolean register(DangKyThiId dkId) {
 		return new KyThiDAO().register(dkId);
 	}
+
+	public KyThi get(int idKyThi) {
+		return new KyThiDAO().get(idKyThi);
+	}
 }
