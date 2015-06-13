@@ -31,8 +31,20 @@ public class KyThiController {
 		return "listkythi";
 	}
 
+	@RequestMapping(value = "/danhsanh", method = RequestMethod.GET)
+	public String getDanhSach(ModelMap m) {
+		List<KyThi> lst = new KyThiBUS().getStarted();
+		List<KyThi> lstUn = new KyThiBUS().getUnStart();
+
+		m.addAttribute("lstKt", lst);
+		m.addAttribute("lstKtUn", lstUn);
+
+		return "danhsachkythi";
+	}
+
 	@RequestMapping(value = "/dangky/{id}", method = RequestMethod.GET)
-	public String addDangKy(@PathVariable("id")int id, ModelMap m, HttpSession session) {
+	public String addDangKy(@PathVariable("id") int id, ModelMap m,
+			HttpSession session) {
 		if (session.getAttribute("acc") == null) {
 			m.addAttribute("required", "/kythi/list");
 			return "redirect:/account/login";

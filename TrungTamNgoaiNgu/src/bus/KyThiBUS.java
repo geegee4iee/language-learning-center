@@ -28,6 +28,20 @@ public class KyThiBUS {
 
 		return lstUn;
 	}
+	
+	public List<KyThi> getStarted() {
+		List<KyThi> lst = new KyThiDAO().getAll();
+		List<KyThi> lstUn = new ArrayList<KyThi>();
+		Date curDate = new Date();
+
+		for (KyThi kt : lst) {
+			if (curDate.compareTo(kt.getThoiGianThi()) >= 0) {
+				lstUn.add(kt);
+			}
+		}
+
+		return lstUn;
+	}
 
 	public boolean isExistDangKy(DangKyThiId id) {
 		if (new KyThiDAO().getDangKy(id) == null) {

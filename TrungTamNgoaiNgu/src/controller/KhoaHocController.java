@@ -7,14 +7,13 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import model.LoginModel;
-
-
 import model.SessionUserModel;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +30,25 @@ import bus.KhoaHocBUS;
 @Controller
 @RequestMapping(value = "/khoahoc")
 public class KhoaHocController {
+	@RequestMapping(value = "/danhsach", method = RequestMethod.GET)
+	public String getStarted(ModelMap m) {
+		List<KhoaHoc> kh = new KhoaHocBUS().getStarted();
+		List<KhoaHoc> khUn = new KhoaHocBUS().getUnStartKhoaHoc();
+
+		m.addAttribute("lstKh", kh);
+		m.addAttribute("lstKhUn", khUn);
+		return "danhsachkhoahoc";
+	}
+
+	@RequestMapping(value = "/danhsach/{id}", method = RequestMethod.GET)
+	public String getBySubject(ModelMap m, @PathVariable("id") int chuyenDe) {
+		List<KhoaHoc> kh = new KhoaHocBUS().getStarted(chuyenDe);
+		List<KhoaHoc> khUn = new KhoaHocBUS().getUnStartKhoaHoc(chuyenDe);
+
+		m.addAttribute("lstKh", kh);
+		m.addAttribute("lstKhUn", khUn);
+		return "danhsachkhoahoc";
+	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String getList(ModelMap m) {
@@ -82,14 +100,13 @@ public class KhoaHocController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-		else{
+		} else {
 			m.addAttribute("title", "Đăng ký khóa học");
 			m.addAttribute("status", "mã số " + id
 					+ " thất bại, bạn đã đăng ký khóa học này rồi!");
 			m.addAttribute("linkBack", "/khoahoc/list");
-			m.addAttribute("linkContent","Trở lại trang khóa học");
-			
+			m.addAttribute("linkContent", "Trở lại trang khóa học");
+
 			return "error";
 		}
 
@@ -97,7 +114,7 @@ public class KhoaHocController {
 		m.addAttribute("status", "mã số " + id
 				+ " thành công, hãy chờ chúng tôi liên hệ bạn để làm thủ tục");
 		m.addAttribute("linkBack", "/khoahoc/list");
-		m.addAttribute("linkContent","Trở lại trang khóa học");
+		m.addAttribute("linkContent", "Trở lại trang khóa học");
 
 		return "success";
 	}

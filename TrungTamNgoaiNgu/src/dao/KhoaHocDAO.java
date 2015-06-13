@@ -36,7 +36,7 @@ public class KhoaHocDAO {
 
 		return kh;
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	public List<KhoaHoc> getAll(int chudeId) {
 		List<KhoaHoc> lst = new ArrayList<KhoaHoc>();

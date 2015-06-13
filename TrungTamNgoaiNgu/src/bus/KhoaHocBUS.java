@@ -14,8 +14,50 @@ public class KhoaHocBUS {
 		return new KhoaHocDAO().getAll();
 	}
 
+	public List<KhoaHoc> getStarted() {
+		List<KhoaHoc> lstKh = new KhoaHocDAO().getAll();
+		List<KhoaHoc> lstCurKh = new ArrayList<KhoaHoc>();
+		Date curDate = new Date();
+
+		for (KhoaHoc kh : lstKh) {
+			if (curDate.compareTo(kh.getNgayBatDau()) >= 0) {
+				lstCurKh.add(kh);
+			}
+		}
+
+		return lstCurKh;
+	}
+
+	public List<KhoaHoc> getStarted(int subject) {
+		List<KhoaHoc> lstKh = new KhoaHocDAO().getAll(subject);
+		List<KhoaHoc> lstCurKh = new ArrayList<KhoaHoc>();
+		Date curDate = new Date();
+
+		for (KhoaHoc kh : lstKh) {
+			if (curDate.compareTo(kh.getNgayBatDau()) >= 0) {
+				lstCurKh.add(kh);
+			}
+		}
+
+		return lstCurKh;
+	}
+
 	public List<KhoaHoc> getUnStartKhoaHoc() {
 		List<KhoaHoc> lstKh = new KhoaHocDAO().getAll();
+		List<KhoaHoc> lstCurKh = new ArrayList<KhoaHoc>();
+		Date curDate = new Date();
+
+		for (KhoaHoc kh : lstKh) {
+			if (curDate.compareTo(kh.getNgayBatDau()) < 0) {
+				lstCurKh.add(kh);
+			}
+		}
+
+		return lstCurKh;
+	}
+
+	public List<KhoaHoc> getUnStartKhoaHoc(int subject) {
+		List<KhoaHoc> lstKh = new KhoaHocDAO().getAll(subject);
 		List<KhoaHoc> lstCurKh = new ArrayList<KhoaHoc>();
 		Date curDate = new Date();
 
