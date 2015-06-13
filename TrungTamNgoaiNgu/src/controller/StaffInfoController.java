@@ -15,8 +15,8 @@ import bus.NhanVienBUS;
 @RequestMapping("/profile")
 public class StaffInfoController {
 	@RequestMapping(value = "/nhanvien", method = RequestMethod.POST)
-	public String staffIndex(ModelMap m, @RequestParam("id") int nhanVien) {
-		NhanVien nv = new NhanVienBUS().get(nhanVien);
+	public String staffIndex(ModelMap m, @RequestParam("id") String taiKhoan) {
+		NhanVien nv = new NhanVienBUS().get(taiKhoan);
 		AccountUpdateModel acc = new AccountUpdateModel();
 		acc.setId(nv.getTaiKhoan().getId());
 

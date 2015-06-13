@@ -7,10 +7,12 @@ import java.util.List;
 import model.NhanVienManagerModel;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import pojo.NhanVien;
+import pojo.TaiKhoan;
 import pojo.VaiTro;
 import utils.ConnectionFactory;
 import utils.DateFormat;
@@ -48,6 +50,26 @@ public class NhanVienDAO {
 			e.printStackTrace();
 		}
 
+		return nv;
+	}
+	
+	public NhanVien get(String taiKhoan){
+		NhanVien nv = null;
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+		
+		try {
+			sess.getTransaction().begin();
+			TaiKhoan tk = (TaiKhoan) sess.load(TaiKhoan.class, taiKhoan);
+			Query query = sess.createQuery("from NhanVien where taiKhoan=:tk");
+			query.setParameter("tk", tk);
+			nv = (NhanVien) query.uniqueResult();
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return nv;
 	}
 

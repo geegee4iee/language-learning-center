@@ -12,6 +12,10 @@ public class NhanVienBUS {
 		return new NhanVienDAO().get(nhanVien);
 	}
 
+	public NhanVien get(String taiKhoan) {
+		return new NhanVienDAO().get(taiKhoan);
+	}
+
 	public List<NhanVien> getAll() {
 		return new NhanVienDAO().getAll();
 	}

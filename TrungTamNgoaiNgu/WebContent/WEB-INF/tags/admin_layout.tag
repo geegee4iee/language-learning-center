@@ -44,19 +44,26 @@
 
 			<ul class="nav navbar-top-links navbar-right" id="form-logout">
 				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>Xin chào ${sessionScope.accStaff.name }
+					data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>Xin
+						chào ${sessionScope.accStaff.name }
 				</a>
 					<ul class="dropdown-menu dropdown-user">
-						<li><a href="#"><i class="fa fa-user fa-fw"></i> User
-								Profile</a></li>
-						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+						<li>
+							<form method="POST"
+								action="${pageContext.request.contextPath }/profile/nhanvien">
+								<input name="id" type="submit" id="submit-button-profile"
+									style="display: none" value="${sessionScope.accStaff.id }" />
+								<a href="#" onclick="$('#submit-button-profile').click();"><i
+									class="fa fa-sign-out fa-fw"></i> Thông tin cá nhân</a>
+							</form>
 						</li>
 						<li class="divider"></li>
 						<li>
-							<form method="POST" action="${pageContext.request.contextPath }/tknhanvien/dangxuat">
-							<input type="submit" id="submit-button" style="display: none" />
-								<a href="#" onclick="$('#submit-button').click();"><i class="fa fa-sign-out fa-fw"></i>
-								Logout</a>
+							<form method="POST"
+								action="${pageContext.request.contextPath }/tknhanvien/dangxuat">
+								<input type="submit" id="submit-button" style="display: none" />
+								<a href="#" onclick="$('#submit-button').click();"><i
+									class="fa fa-sign-out fa-fw"></i> Logout</a>
 							</form>
 						</li>
 					</ul> <!-- /.dropdown-user --></li>

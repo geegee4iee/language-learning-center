@@ -15,17 +15,9 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Thêm khóa học
+                            Thông tin cá nhân
                         </h1>
                         <ol class="breadcrumb">
-                             <li>
-                                 <a
-								href="${pageContext.request.contextPath }/nhanvien/index">Chuyên đề</a>
-                            </li>
-                            <li>
-                                  <a
-								href="${pageContext.request.contextPath }/nhanvien/courses/${obj.chuDe}">Khóa học</a>
-                            </li>
                             <li class="active">
                                  Trang hiện tại
                             </li>
@@ -38,29 +30,45 @@
                 		<form>
                 			<div class="form-group">
                 				<label>Mã nhân viên</label>
-                				<input class="form-control" readonly="readonly" />
+                				<input class="form-control" readonly
+									value="${staffInfo.id }" />
                 			</div>
-                		
+                			<div class="form-group">
+                				<label>Họ tên</label>
+                				<input class="form-control" readonly
+									value="${staffInfo.hoTen }" />
+                			</div>
+                			<div class="form-group">
+                				<label>Địa chỉ</label>
+                				<input class="form-control" readonly
+									value="${staffInfo.diaChi }" />
+                			</div>
+                			<div class="form-group">
+                				<label>Số điện thoại</label>
+                				<input class="form-control" readonly
+									value="${staffInfo.soDienThoai }" />
+                			</div>
                 		</form>
+                		<hr>
                 		<f:form commandName="staffAcc" method="POST"
 							action="${pageContext.request.contextPath}/profile/doimatkhau"
 							id="changePwd">
 						<div class="form-group">
 							<label>Tên tài khoản</label>
-							<f:input class="form-control" path="id" readonly="readonly" />						
+							<f:input class="form-control" path="id" readonly="true" />						
 						</div>
 						<div class="form-group">
 							<label>Mật khẩu</label>
-							<f:input class="form-control" path="password" name="password" />						
+							<f:input class="form-control" type="password" path="password" name="password" />						
 						</div>
 						<div class="form-group">
 							<label>Mật khẩu mới</label>
-							<f:input class="form-control" path="passwordNew"
-									name="passwordNew" />						
+							<f:input class="form-control" type="password" path="passwordNew"
+									name="passwordNew" id="passwordNew" />						
 						</div>
 						<div class="form-group">
 							<label>Nhập lại mật khẩu mới</label>
-							<input class="form-control" name="passwordNewRepeat" />
+							<input class="form-control" type="password" name="passwordNewRepeat" />
 						</div>
 						<input type="submit" class="btn btn-default" value="Đổi mật khẩu">
 					</f:form>
@@ -84,52 +92,33 @@
 			
 		</script>
 		<script>
-			$('.datepicker').datepicker();
-
-			//Validator custom date format for date of birth
-			$.validator.addMethod("vndate", function(value, element) {
-				return /^\d\d?\/\d\d?\/\d\d\d\d$/.test(value);
-			});
-
 			//Validator Jquery
 			$(function() {
-				$('#addCourse').validate({
+				$('#changePwd').validate({
 					rules : {
-						ten : {
+						password : {
 							required : true
 						},
-						khoa : {
+						passwordNew : {
 							required : true,
-							digits : true,
-							min : 2014,
-							max : 2024
+							minlength : 6
 						},
-						ngayBatDau : {
+						passwordNewRepeat : {
 							required : true,
-							vndate : true
-						},
-						ngayKetThuc : {
-							required : true,
-							vndate : true
+							equalTo : "#passwordNew"
 						}
 					},
 					messages : {
-						ten : {
-							required : 'Chưa nhập tên khóa học'
+						password : {
+							required : 'Chưa nhập mật khẩu cũ'
 						},
-						khoa : {
-							required : 'Chưa nhập khóa',
-							digits : 'Đây không phải là số',
-							min : 'Không hợp lệ',
-							max : 'Không hợp lệ'
+						passwordNew : {
+							required : 'Chưa nhập mật khẩu mới',
+							minlength : 'Mật khẩu tối thiểu phải dài 6 ký tự'
 						},
-						ngayBatDau : {
-							required : 'Chưa nhập ngày bắt đầu',
-							vndate : 'Ngày nhập không đúng định dạng'
-						},
-						ngayKetThuc : {
-							required : 'Chưa nhập ngày kết thúc',
-							vndate : 'Ngày nhập không đúng định dạng'
+						passwordNewRepeat : {
+							required : 'Chưa nhập lại mật khẩu mới',
+							equalTo : 'Mật khẩu mới nhập lại không chính xác'
 						}
 					},
 					errorElement : 'small',
