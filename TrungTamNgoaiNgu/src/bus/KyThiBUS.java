@@ -36,6 +36,10 @@ public class KyThiBUS {
 		return lstUn;
 	}
 
+	public List<DangKyThi> getReg(int kyThi) {
+		return new KyThiDAO().getReg(kyThi);
+	}
+
 	public List<KyThi> getStarted() {
 		List<KyThi> lst = new KyThiDAO().getAll();
 		List<KyThi> lstUn = new ArrayList<KyThi>();

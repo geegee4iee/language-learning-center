@@ -49,8 +49,12 @@ public class KhoaHocController {
 	@RequestMapping(value = "/lichhoc/{id}", method = RequestMethod.GET)
 	public String getSchedule(ModelMap m, @PathVariable("id") int khoaHoc) {
 		List<LichHoc> lh = new LichHocBUS().getAll(khoaHoc);
+		KhoaHoc kh = new KhoaHocBUS().getById(khoaHoc);
+		List<ChuDe> cd = new ChuDeBUS().getAll();
 
 		m.addAttribute("lstLh", lh);
+		m.addAttribute("kh", kh);
+		m.addAttribute("lstCd", cd);
 		return "lichhockhoahoc";
 	}
 

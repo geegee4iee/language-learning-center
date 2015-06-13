@@ -34,6 +34,7 @@ import pojo.DangKyKhoaHoc;
 import pojo.DangKyKhoaHocId;
 import pojo.DangKyThi;
 import pojo.DangKyThiId;
+import pojo.KyThi;
 import pojo.NhanVien;
 import utils.BackupDatabase;
 import utils.ConnectionFactory;
@@ -212,5 +213,26 @@ public class ManagerController {
 		return "redirect:/quantri/dangkythi";
 	}
 
-	
+	@RequestMapping(value = "/kythi", method = RequestMethod.GET)
+	public String listKyThi(ModelMap m) {
+		List<KyThi> lst = new KyThiBUS().getStarted();
+
+		m.addAttribute("lst", lst);
+		return "kythiquantri";
+	}
+
+	@RequestMapping(value = "/kythi/{id}", method = RequestMethod.GET)
+	public String listDangKyThi(ModelMap m, @PathVariable("id") int kyThi) {
+		List<DangKyThi> lst = new KyThiBUS().getReg(kyThi);
+
+		return "dangkythiquantri";
+	}
+
+	@RequestMapping(value = "/capnhapdiem", method = RequestMethod.POST)
+	public String updateScore(@RequestParam("kyThi") int kyThi,
+			@RequestParam("hocVien") int hocVien,
+			@RequestParam("diem") float diem) {
+
+		return "redirect:/quantri/";
+	}
 }
