@@ -48,7 +48,7 @@
 									${item.id }
 								</td>
 								<td>
-									<a href="${pageContext.request.contextPath }/kythi/${item.id}">
+									<a href="${pageContext.request.contextPath }/quantri/kythi/${item.id}">
 										${item.ten }
 									</a>
 								</td>
@@ -92,7 +92,7 @@
 								</td>
 								<td>
 									<a
-										href="${pageContext.request.contextPath }/quantri/kythi/${item.id}">
+										href="${pageContext.request.contextPath }/quantri/chuathi/${item.id}">
 										${item.ten }
 									</a>
 								</td>
@@ -101,7 +101,7 @@
 									
 								</td>
 								<td>
-									${item.soLuongDuThi }
+									${item.dangKyThis.size() }
 								</td>
 								<td>
 									${item.thoiGianThi }

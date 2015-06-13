@@ -232,6 +232,16 @@ public class ManagerController {
 		m.addAttribute("obj", kt);
 		return "dangkythiquantri";
 	}
+	
+	@RequestMapping(value="/chuathi/{id}",method=RequestMethod.GET)
+	public String listChuaThi(ModelMap m,@PathVariable("id")int kyThi){
+		List<DangKyThi> lst = new KyThiBUS().getReg(kyThi);
+		KyThi kt = new KyThiBUS().get(kyThi);
+
+		m.addAttribute("lst", lst);
+		m.addAttribute("obj", kt);
+		return "chuathiquantri";
+	}
 
 	@RequestMapping(value = "/capnhapdiem", method = RequestMethod.POST)
 	public String updateScore(@RequestParam("kyThi") int kyThi,

@@ -8,6 +8,10 @@ import dao.NhanVienDAO;
 import pojo.NhanVien;
 
 public class NhanVienBUS {
+	public NhanVien get(int nhanVien) {
+		return new NhanVienDAO().get(nhanVien);
+	}
+
 	public List<NhanVien> getAll() {
 		return new NhanVienDAO().getAll();
 	}

@@ -34,6 +34,23 @@ public class NhanVienDAO {
 		return lst;
 	}
 
+	public NhanVien get(int idNhanVien) {
+		NhanVien nv = null;
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+
+		try {
+			sess.getTransaction().begin();
+			nv = (NhanVien) sess.get(NhanVien.class, idNhanVien);
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return nv;
+	}
+
 	public boolean add(NhanVienManagerModel nvM) {
 		NhanVien nv = new NhanVien();
 		nv.setHoTen(nvM.getHoTen());
@@ -60,14 +77,14 @@ public class NhanVienDAO {
 
 		return true;
 	}
-	
-	public boolean updateSalary(int nhanVien, BigDecimal luong){
+
+	public boolean updateSalary(int nhanVien, BigDecimal luong) {
 		SessionFactory fac = ConnectionFactory.getSessionFactory();
 		Session sess = fac.openSession();
-		
+
 		try {
 			sess.getTransaction().begin();
-			NhanVien nv = (NhanVien)sess.load(NhanVien.class, nhanVien);
+			NhanVien nv = (NhanVien) sess.load(NhanVien.class, nhanVien);
 			nv.setLuong(luong);
 			sess.update(nv);
 			sess.getTransaction().commit();
@@ -77,7 +94,7 @@ public class NhanVienDAO {
 			sess.getTransaction().rollback();
 			return false;
 		}
-		
+
 		return true;
 	}
 }

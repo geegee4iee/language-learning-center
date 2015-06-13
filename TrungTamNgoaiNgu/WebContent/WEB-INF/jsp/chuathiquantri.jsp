@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Danh sách đăng ký thi
+                            Danh sách đăng ký chưa thi
                             <small>${obj.ten }</small>
                         </h1>
                         <ol class="breadcrumb">
@@ -30,14 +30,12 @@
                 </div>
                 <!-- /.row -->
                 <div class="row">
-                	<div class="col-md-12">
+                	<div class="col-md-6">
                 		<table class="table">
                 		<thead>
                 			<tr>
                 				<th>Mã học viên</th>
 								<th>Tên học viên</th>
-								<th>Điểm</th>
-								<th></th>
                 			</tr>
                 		</thead>
                 		<c:forEach items="${lst }" var="item">
@@ -47,19 +45,6 @@
 								</td>
 								<td>
 									${item.hocVien.hoTen }
-								</td>
-								<td>
-									${item.diem }
-								</td>
-								<td>
-									<c:if test="${item.daDangKy == 1}">
-										<form method="POST" action="${pageContext.request.contextPath }/quantri/capnhapdiem" class="form-inline">
-											<input name="kyThi" type="hidden" value="${obj.id }" />
-											<input name="hocVien" type="hidden" value="${item.hocVien.id }" />
-											<input class="form-control" name="diem" />
-											<button class="btn btn-default">Cập nhập điểm</button>
-										</form>
-									</c:if>
 								</td>
 							</tr>               		
                 		</c:forEach>
