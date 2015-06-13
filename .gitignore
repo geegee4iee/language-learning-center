@@ -3,3 +3,4 @@ TrungTamNgoaiNgu/.settings/
 TrungTamNgoaiNgu/.settings/org.eclipse.wst.common.project.facet.core.xml
 TrungTamNgoaiNgu/src/hibernate.cfg
 TrungTamNgoaiNgu/.classpath
+*.classpath
