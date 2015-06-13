@@ -47,7 +47,7 @@ public class KhoaHocController {
 	}
 
 	@RequestMapping(value = "/lichhoc/{id}", method = RequestMethod.GET)
-	public String getSchedult(ModelMap m, @PathVariable("id") int khoaHoc) {
+	public String getSchedule(ModelMap m, @PathVariable("id") int khoaHoc) {
 		List<LichHoc> lh = new LichHocBUS().getAll(khoaHoc);
 
 		m.addAttribute("lstLh", lh);
@@ -58,9 +58,11 @@ public class KhoaHocController {
 	public String getBySubject(ModelMap m, @PathVariable("id") int chuyenDe) {
 		List<KhoaHoc> kh = new KhoaHocBUS().getStarted(chuyenDe);
 		List<KhoaHoc> khUn = new KhoaHocBUS().getUnStartKhoaHoc(chuyenDe);
+		List<ChuDe> cd = new ChuDeBUS().getAll();
 
 		m.addAttribute("lstKh", kh);
 		m.addAttribute("lstKhUn", khUn);
+		m.addAttribute("lstCd", cd); // Danh sách chủ đề
 		return "danhsachkhoahoc";
 	}
 

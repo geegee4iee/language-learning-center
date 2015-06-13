@@ -2,6 +2,8 @@ package controller;
 
 import java.util.List;
 
+import model.HighScoreModel;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import bus.KhoaHocBUS;
+import bus.KyThiBUS;
 import pojo.KhoaHoc;
 
 @Controller
@@ -19,9 +22,13 @@ public class HomeController {
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Model m) {
 		List<KhoaHoc> lst = new KhoaHocBUS().getAll();
+		List<HighScoreModel> lstHs = new KyThiBUS().getHighScore();
+
 		m.addAttribute("lst", lst);
+		m.addAttribute("lstHs", lstHs);
 		return "index";
 	}
+
 	// sua o day
 	// o day tiep tiep
 	// daay

@@ -29,7 +29,7 @@ import utils.ConnectionFactory;
 @Controller
 @RequestMapping(value = "/account")
 public class TaiKhoanController {
-
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(
 			@RequestParam(value = "required", required = false) String required,
