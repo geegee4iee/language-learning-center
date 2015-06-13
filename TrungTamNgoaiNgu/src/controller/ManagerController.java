@@ -216,8 +216,10 @@ public class ManagerController {
 	@RequestMapping(value = "/kythi", method = RequestMethod.GET)
 	public String listKyThi(ModelMap m) {
 		List<KyThi> lst = new KyThiBUS().getStarted();
+		List<KyThi> lstUn = new KyThiBUS().getUnStart();
 
 		m.addAttribute("lst", lst);
+		m.addAttribute("lstUn", lstUn);
 		return "kythiquantri";
 	}
 
@@ -235,6 +237,6 @@ public class ManagerController {
 			@RequestParam("diem") double diem) {
 		new KyThiBUS().updateScore(new DangKyThiId(kyThi, hocVien), diem);
 
-		return "redirect:/quantri/";
+		return "redirect:/quantri/kythi/" + kyThi;
 	}
 }

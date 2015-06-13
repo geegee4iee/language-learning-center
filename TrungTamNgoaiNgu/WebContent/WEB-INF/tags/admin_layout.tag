@@ -102,6 +102,9 @@
 								<li><a
 									href="${pageContext.request.contextPath }/quantri/dangkythi"><i
 										class="fa fa-comments fa-fw"></i>Đăng ký thi</a></li>
+								<li><a
+									href="${pageContext.request.contextPath }/quantri/kythi"><i
+										class="fa fa-comments fa-fw"></i>Quản lý kỳ thi</a></li>
 							</c:when>
 						</c:choose>
 					</ul>
