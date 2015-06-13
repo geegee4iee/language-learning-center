@@ -54,6 +54,10 @@ public class KyThiBUS {
 		return lstUn;
 	}
 
+	public boolean updateScore(DangKyThiId id, double diem) {
+		return new KyThiDAO().updateScore(id, diem);
+	}
+
 	public boolean isExistDangKy(DangKyThiId id) {
 		if (new KyThiDAO().getDangKy(id) == null) {
 			return false;

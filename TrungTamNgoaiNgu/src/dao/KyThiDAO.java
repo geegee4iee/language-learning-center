@@ -172,4 +172,29 @@ public class KyThiDAO {
 
 		return true;
 	}
+
+	public boolean updateScore(DangKyThiId id, double diem) {
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+
+		try {
+			sess.getTransaction().begin();
+			DangKyThi dk = (DangKyThi) sess.get(DangKyThi.class, id);
+
+			if (dk != null) {
+				dk.setDiem(diem);
+				sess.save(dk);
+			}
+
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sess.getTransaction().rollback();
+
+			return false;
+		}
+
+		return true;
+	}
 }

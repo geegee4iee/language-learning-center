@@ -225,13 +225,15 @@ public class ManagerController {
 	public String listDangKyThi(ModelMap m, @PathVariable("id") int kyThi) {
 		List<DangKyThi> lst = new KyThiBUS().getReg(kyThi);
 
+		m.addAttribute("lst", lst);
 		return "dangkythiquantri";
 	}
 
 	@RequestMapping(value = "/capnhapdiem", method = RequestMethod.POST)
 	public String updateScore(@RequestParam("kyThi") int kyThi,
 			@RequestParam("hocVien") int hocVien,
-			@RequestParam("diem") float diem) {
+			@RequestParam("diem") double diem) {
+		new KyThiBUS().updateScore(new DangKyThiId(kyThi, hocVien), diem);
 
 		return "redirect:/quantri/";
 	}
