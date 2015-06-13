@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import model.HighScoreModel;
 import dao.KyThiDAO;
 import pojo.DangKyThi;
 import pojo.DangKyThiId;
@@ -13,6 +14,12 @@ public class KyThiBUS {
 
 	public List<KyThi> getAll() {
 		return new KyThiDAO().getAll();
+	}
+
+	public List<HighScoreModel> getHighScore() {
+		List<KyThi> lst = new KyThiDAO().getStarted();
+
+		return new KyThiDAO().getHighScore(lst);
 	}
 
 	public List<KyThi> getUnStart() {
@@ -28,7 +35,7 @@ public class KyThiBUS {
 
 		return lstUn;
 	}
-	
+
 	public List<KyThi> getStarted() {
 		List<KyThi> lst = new KyThiDAO().getAll();
 		List<KyThi> lstUn = new ArrayList<KyThi>();

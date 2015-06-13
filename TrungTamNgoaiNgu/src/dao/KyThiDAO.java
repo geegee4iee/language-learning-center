@@ -1,7 +1,10 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import model.HighScoreModel;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -27,6 +30,25 @@ public class KyThiDAO {
 		lst = sess.createCriteria(KyThi.class).list();
 		sess.getTransaction().commit();
 
+		return lst;
+	}
+	
+	public List<KyThi> getStarted(){
+		List<KyThi> lst = new ArrayList<KyThi>();
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+		
+		try {
+			sess.getTransaction().begin();
+			Query query = sess.createQuery("from KyThi where thoiGianThi < :date");
+			query.setParameter("date", new Date());
+			lst = query.setMaxResults(5).list();
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return lst;
 	}
 
@@ -86,6 +108,28 @@ public class KyThiDAO {
 		}
 
 		return lst;
+	}
+
+	public List<HighScoreModel> getHighScore(List<KyThi> lstKt) {
+		List<HighScoreModel> lstScore = new ArrayList<HighScoreModel>();
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+
+		sess.getTransaction().begin();
+		for (KyThi kt : lstKt) {
+			Query query = sess
+					.createQuery("from DangKyThi where idKyThi=:idKt order by diem desc");
+			DangKyThi dkT = (DangKyThi) query.uniqueResult();
+			HighScoreModel hs = new HighScoreModel();
+			hs.setTenKyThi(kt.getTen());
+			hs.setHoTen(dkT.getHocVien().getHoTen());
+			hs.setIdHocVien(dkT.getHocVien().getId());
+			hs.setDiem(dkT.getDiem().toString());
+
+			lstScore.add(hs);
+		}
+
+		return lstScore;
 	}
 
 	public boolean register(DangKyThiId dkId) {

@@ -18,14 +18,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import pojo.ChuDe;
 import pojo.DangKyKhoaHoc;
 import pojo.DangKyKhoaHocId;
 import pojo.HocVien;
 import pojo.KhoaHoc;
+import pojo.LichHoc;
 import utils.ConnectionFactory;
+import bus.ChuDeBUS;
 import bus.DangKyKhoaHocBUS;
 import bus.HocVienBUS;
 import bus.KhoaHocBUS;
+import bus.LichHocBUS;
 
 @Controller
 @RequestMapping(value = "/khoahoc")
@@ -34,10 +38,20 @@ public class KhoaHocController {
 	public String getStarted(ModelMap m) {
 		List<KhoaHoc> kh = new KhoaHocBUS().getStarted();
 		List<KhoaHoc> khUn = new KhoaHocBUS().getUnStartKhoaHoc();
+		List<ChuDe> cd = new ChuDeBUS().getAll();
 
 		m.addAttribute("lstKh", kh);
 		m.addAttribute("lstKhUn", khUn);
+		m.addAttribute("lstCd", cd); // Danh sách chủ đề
 		return "danhsachkhoahoc";
+	}
+
+	@RequestMapping(value = "/lichhoc/{id}", method = RequestMethod.GET)
+	public String getSchedult(ModelMap m, @PathVariable("id") int khoaHoc) {
+		List<LichHoc> lh = new LichHocBUS().getAll(khoaHoc);
+
+		m.addAttribute("lstLh", lh);
+		return "lichhockhoahoc";
 	}
 
 	@RequestMapping(value = "/danhsach/{id}", method = RequestMethod.GET)
