@@ -47,7 +47,6 @@ public class ManagerAuthority implements Filter {
 		HttpServletRequest rq = (HttpServletRequest) request;
 		HttpServletResponse rs = (HttpServletResponse) response;
 		HttpSession session = rq.getSession();
-		System.out.println("Second run");
 
 		if (session.getAttribute("accStaff") == null) {
 			rs.sendRedirect(rq.getContextPath() + "/tknhanvien/dangnhap");

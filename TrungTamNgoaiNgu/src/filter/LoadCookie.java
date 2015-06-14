@@ -46,7 +46,6 @@ public class LoadCookie implements Filter {
 		// place your code here
 		HttpServletRequest rq = (HttpServletRequest) request;
 		HttpSession session = rq.getSession();
-		System.out.println("First run");
 
 		if (session.getAttribute("accStaff") == null) {
 			String id = CookieHelper.getCookie("accStaff", rq);

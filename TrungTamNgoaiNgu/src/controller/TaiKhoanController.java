@@ -32,7 +32,7 @@ import utils.CookieHelper;
 @Controller
 @RequestMapping(value = "/account")
 public class TaiKhoanController {
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(
 			@RequestParam(value = "required", required = false) String required,
@@ -97,7 +97,7 @@ public class TaiKhoanController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@ModelAttribute("acc") LoginModel login, Model model,
-			HttpSession session,HttpServletResponse respond) {
+			HttpSession session, HttpServletResponse respond) {
 
 		SessionFactory fac = ConnectionFactory.getSessionFactory();
 		Session sess = fac.openSession();
@@ -124,11 +124,13 @@ public class TaiKhoanController {
 				user.setPermission(tk.getQuyenHan().getId());
 				user.setName(name);
 				user.setId(login.getId());
-				
+
 				session.setAttribute("acc", user);
-				
-				if (login.getRemember().equals("checked") == true) {
-					CookieHelper.saveCookie("acc", user.getId(), respond);
+
+				if (login.getRemember() != null) {
+					if (login.getRemember().equals("checked") == true) {
+						CookieHelper.saveCookie("acc", user.getId(), respond);
+					}
 				}
 			} else {
 				model.addAttribute("status", "Đăng nhập thất bại");
@@ -154,7 +156,7 @@ public class TaiKhoanController {
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpSession session,HttpServletResponse respond) {
+	public String logout(HttpSession session, HttpServletResponse respond) {
 		if (session.getAttribute("acc") != null) {
 			session.removeAttribute("acc");
 			CookieHelper.expireCookie("acc", respond);

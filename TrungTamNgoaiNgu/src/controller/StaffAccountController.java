@@ -74,8 +74,11 @@ public class StaffAccountController {
 
 				session.setAttribute("accStaff", user);
 
-				if (login.getRemember().equals("checked") == true) {
-					CookieHelper.saveCookie("accStaff", user.getId(), respond);
+				if (login.getRemember() != null) {
+					if (login.getRemember().equals("checked") == true) {
+						CookieHelper.saveCookie("accStaff", user.getId(),
+								respond);
+					}
 				}
 
 			} else {
