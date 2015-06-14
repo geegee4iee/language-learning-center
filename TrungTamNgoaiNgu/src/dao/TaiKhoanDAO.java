@@ -7,6 +7,7 @@ import pojo.NhanVien;
 import pojo.QuyenHan;
 import pojo.TaiKhoan;
 import utils.ConnectionFactory;
+import utils.EncryptPassword;
 import model.TaiKhoanManagerModel;
 
 public class TaiKhoanDAO {
@@ -14,7 +15,7 @@ public class TaiKhoanDAO {
 		boolean flag = false;
 		TaiKhoan tk = new TaiKhoan();
 		tk.setId(tkM.getId());
-		tk.setMatKhau(tkM.getPassword());
+		tk.setMatKhau(EncryptPassword.md5(tkM.getPassword()));
 		tk.setQuyenHan(new QuyenHan(tkM.getPermission(), ""));
 
 		SessionFactory fac = ConnectionFactory.getSessionFactory();

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import pojo.TaiKhoan;
 import utils.ConnectionFactory;
 import utils.CookieHelper;
+import utils.EncryptPassword;
 
 @Controller
 @RequestMapping(value = "/tknhanvien")
@@ -53,7 +54,8 @@ public class StaffAccountController {
 			Query query = sess
 					.createQuery("from TaiKhoan tk where tk.id=:id and tk.matKhau=:password and tk.quyenHan > 1");
 			query.setString("id", login.getId());
-			query.setString("password", login.getPassword());
+			query.setString("password",
+					EncryptPassword.md5(login.getPassword()));
 
 			if (query.uniqueResult() != null) {
 				TaiKhoan tk = (TaiKhoan) query.uniqueResult();

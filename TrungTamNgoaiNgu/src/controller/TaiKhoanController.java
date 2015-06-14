@@ -31,6 +31,7 @@ import pojo.QuyenHan;
 import pojo.TaiKhoan;
 import utils.ConnectionFactory;
 import utils.CookieHelper;
+import utils.EncryptPassword;
 
 @Controller
 @RequestMapping(value = "/account")
@@ -67,7 +68,7 @@ public class TaiKhoanController {
 
 		TaiKhoan tk = new TaiKhoan();
 		tk.setId(register.getId());
-		tk.setMatKhau(register.getPassword());
+		tk.setMatKhau(EncryptPassword.md5(register.getPassword()));
 		tk.setQuyenHan(new QuyenHan(1, ""));
 
 		// Convert from String to Date
@@ -115,7 +116,8 @@ public class TaiKhoanController {
 			Query query = sess
 					.createQuery("from TaiKhoan tk where tk.id=:id and tk.matKhau=:password");
 			query.setString("id", login.getId());
-			query.setString("password", login.getPassword());
+			
+			query.setString("password",EncryptPassword.md5(login.getPassword()));
 
 			if (query.uniqueResult() != null) {
 				TaiKhoan tk = (TaiKhoan) query.uniqueResult();
