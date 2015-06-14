@@ -86,8 +86,8 @@ public class KhoaHocController {
 	}
 
 	// Register the course
-	@RequestMapping(value = "/list", method = RequestMethod.POST)
-	public String learn(@RequestParam("id") int id, ModelMap m,
+	@RequestMapping(value = "/dangky/{id}", method = RequestMethod.GET)
+	public String learn(@PathVariable("id") int id, ModelMap m,
 			HttpSession session) {
 
 		if (session.getAttribute("acc") == null) {

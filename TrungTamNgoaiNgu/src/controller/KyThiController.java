@@ -46,7 +46,7 @@ public class KyThiController {
 	public String addDangKy(@PathVariable("id") int id, ModelMap m,
 			HttpSession session) {
 		if (session.getAttribute("acc") == null) {
-			m.addAttribute("required", "/kythi/list");
+			m.addAttribute("required", "/kythi/danhsach");
 			return "redirect:/account/login";
 		}
 
