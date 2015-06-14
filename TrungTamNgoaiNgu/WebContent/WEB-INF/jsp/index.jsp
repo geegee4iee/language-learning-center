@@ -1,3 +1,5 @@
+<%@page import="model.SessionUserModel"%>
+<%@page import="model.LoginModel"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -104,8 +106,30 @@ pageEncoding="UTF-8"%>
             <div id="register" class="navbar-collapse collapse navbar-left">
 			
               <ul id="top-menu" class="nav navbar-nav  navbar-right">
-                <li><a href="${pageContext.request.contextPath }/account/login">ĐĂNG NHẬP</a></li>
-                <li><a href="${pageContext.request.contextPath }/account/register">ĐĂNG KÝ</a></li>
+                <%
+								if (session.getAttribute("acc") != null) {
+									SessionUserModel log = (SessionUserModel) session
+											.getAttribute("acc");
+							%>
+							<li>
+								<a href="#">
+									<%out.print("Xin chào " + log.getName());%>
+								</a>
+							</li>
+							<li>
+								<a href="${pageContext.request.contextPath}/account/logout">
+									Thoát
+								</a>
+							</li>		
+									
+							<%
+								}else{
+							%>
+							
+							<li><a href="${pageContext.request.contextPath}/account/register">Register</a></li>
+
+							<li><a href="${pageContext.request.contextPath}/account/login">Login</a></li>
+							<%} %>
               </ul>
            
             </div><!--/.nav-collapse -->
@@ -403,26 +427,7 @@ pageEncoding="UTF-8"%>
             <div class="ourTutors_content">
               <!-- Start Tutors nav -->
               <ul class="tutors_nav">
-                <li>
-                  <div class="single_tutors">
-                    <div class="tutors_thumb">
-                      <img src="${pageContext.request.contextPath }/resources/img/author.jpg" />                      
-                    </div>
-                    <div class="singTutors_content">
-                      <h3 class="tutors_name">Jame Burns</h3>
-                      <span>Technology Teacher</span>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-                    </div>
-                    <div class="singTutors_social">
-                      <ul class="tutors_socnav">
-                        <li><a class="fa fa-facebook" href="#"></a></li>
-                        <li><a class="fa fa-twitter" href="#"></a></li>
-                        <li><a class="fa fa-instagram" href="#"></a></li>
-                        <li><a class="fa fa-google-plus" href="#"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
+              
                 <li>
                   <div class="single_tutors">
                     <div class="tutors_thumb">
@@ -684,10 +689,12 @@ pageEncoding="UTF-8"%>
     <!-- for circle counter -->
     <script src='https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/js/jquery.circliful.min.js'></script>
     <!-- Gallery slider -->
-    <script type="text/javascript" language="javascript" src="${pageContext.request.contextPath }/resources/js/users/jquery.tosrus.min.all.js"></script>   
+    <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/users/jquery.tosrus.min.all.js"></script>   
    
     <!-- Custom js-->
     <script src="${pageContext.request.contextPath }/resources/js/users/custom.js"></script>
+    
+   
     <!--=============================================== 
     Template Design By WpFreeware Team.
     Author URI : http://www.wpfreeware.com/
