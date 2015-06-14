@@ -311,7 +311,7 @@
     <!-- for circle counter -->
     <script src='https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/js/jquery.circliful.min.js'></script>
     <!-- Gallery slider -->
-    <script type="text/javascript" language="javascript" src="${pageContext.request.contextPath }/resources/js/users/jquery.tosrus.min.all.js"></script>   
+    <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/users/jquery.tosrus.min.all.js"></script>   
    
     <!-- Custom js-->
     <script src="${pageContext.request.contextPath }/resources/js/users/custom.js"></script>
@@ -319,7 +319,7 @@
     Template Design By WpFreeware Team.
     Author URI : http://www.wpfreeware.com/
     ====================================================-->
-
+	<jsp:invoke fragment="js"></jsp:invoke>
 	
 </body>
 </html>
