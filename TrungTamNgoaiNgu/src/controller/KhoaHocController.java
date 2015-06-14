@@ -124,7 +124,7 @@ public class KhoaHocController {
 			m.addAttribute("title", "Đăng ký khóa học");
 			m.addAttribute("status", "mã số " + id
 					+ " thất bại, bạn đã đăng ký khóa học này rồi!");
-			m.addAttribute("linkBack", "/khoahoc/list");
+			m.addAttribute("linkBack", "/khoahoc/danhsach");
 			m.addAttribute("linkContent", "Trở lại trang khóa học");
 
 			return "error";
@@ -133,7 +133,7 @@ public class KhoaHocController {
 		m.addAttribute("title", "Đăng ký khóa học");
 		m.addAttribute("status", "mã số " + id
 				+ " thành công, hãy chờ chúng tôi liên hệ bạn để làm thủ tục");
-		m.addAttribute("linkBack", "/khoahoc/list");
+		m.addAttribute("linkBack", "/khoahoc/danhsach");
 		m.addAttribute("linkContent", "Trở lại trang khóa học");
 
 		return "success";

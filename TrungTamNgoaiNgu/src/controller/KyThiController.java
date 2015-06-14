@@ -61,7 +61,7 @@ public class KyThiController {
 			m.addAttribute("title", "Đăng ký kỳ thi");
 			m.addAttribute("status", "mã số " + id
 					+ " thất bại, bạn đã đăng ký kỳ thi này rồi!");
-			m.addAttribute("linkBack", "/kythi/list");
+			m.addAttribute("linkBack", "/kythi/danhsach");
 			m.addAttribute("linkContent", "Trở lại trang kỳ thi");
 
 			return "error";
@@ -70,7 +70,7 @@ public class KyThiController {
 		m.addAttribute("title", "Đăng ký kỳ thi");
 		m.addAttribute("status", "mã số " + id
 				+ " thành công, hãy chờ chúng tôi liên hệ bạn để làm thủ tục");
-		m.addAttribute("linkBack", "/kythi/list");
+		m.addAttribute("linkBack", "/kythi/danhsach");
 		m.addAttribute("linkContent", "Trở lại trang kỳ thi");
 
 		return "success";
