@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.LoginModel;
@@ -25,6 +27,7 @@ import pojo.HocVien;
 import pojo.QuyenHan;
 import pojo.TaiKhoan;
 import utils.ConnectionFactory;
+import utils.CookieHelper;
 
 @Controller
 @RequestMapping(value = "/account")
@@ -94,7 +97,7 @@ public class TaiKhoanController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@ModelAttribute("acc") LoginModel login, Model model,
-			HttpSession session) {
+			HttpSession session,HttpServletResponse respond) {
 
 		SessionFactory fac = ConnectionFactory.getSessionFactory();
 		Session sess = fac.openSession();
@@ -123,6 +126,10 @@ public class TaiKhoanController {
 				user.setId(login.getId());
 				
 				session.setAttribute("acc", user);
+				
+				if (login.getRemember().equals("checked") == true) {
+					CookieHelper.saveCookie("acc", user.getId(), respond);
+				}
 			} else {
 				model.addAttribute("status", "Đăng nhập thất bại");
 				return "login";
