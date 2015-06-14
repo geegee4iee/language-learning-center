@@ -32,12 +32,12 @@ public class KyThiDAO {
 
 		return lst;
 	}
-	
-	public KyThi get(int idKyThi){
+
+	public KyThi get(int idKyThi) {
 		KyThi kt = null;
 		SessionFactory fac = ConnectionFactory.getSessionFactory();
 		Session sess = fac.openSession();
-		
+
 		try {
 			sess.getTransaction().begin();
 			kt = (KyThi) sess.get(KyThi.class, idKyThi);
@@ -46,7 +46,7 @@ public class KyThiDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return kt;
 	}
 
@@ -61,6 +61,26 @@ public class KyThiDAO {
 					.createQuery("from KyThi where thoiGianThi < :date");
 			query.setParameter("date", new Date());
 			lst = query.setMaxResults(5).list();
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return lst;
+	}
+	
+	public List<KyThi> getStarted(int quantity) {
+		List<KyThi> lst = new ArrayList<KyThi>();
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+
+		try {
+			sess.getTransaction().begin();
+			Query query = sess
+					.createQuery("from KyThi where thoiGianThi < :date");
+			query.setParameter("date", new Date());
+			lst = query.setMaxResults(quantity).list();
 			sess.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -157,7 +177,8 @@ public class KyThiDAO {
 		for (KyThi kt : lstKt) {
 			Query query = sess
 					.createQuery("from DangKyThi where idKyThi=:idKt order by diem desc");
-			DangKyThi dkT = (DangKyThi) query.uniqueResult();
+			query.setString("idKt", Integer.toString(kt.getId()));
+			DangKyThi dkT = (DangKyThi) query.setMaxResults(1).uniqueResult();
 			HighScoreModel hs = new HighScoreModel();
 			hs.setTenKyThi(kt.getTen());
 			hs.setHoTen(dkT.getHocVien().getHoTen());

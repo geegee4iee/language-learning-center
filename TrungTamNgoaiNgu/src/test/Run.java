@@ -3,12 +3,16 @@ package test;
 import java.util.Date;
 import java.util.List;
 
+import dao.KyThiDAO;
+import model.HighScoreModel;
 import model.KhoaHocManagerModel;
 import model.LichHocManagerModel;
 import pojo.KhoaHoc;
+import pojo.KyThi;
 import pojo.PhanHoiHocVien;
 import utils.DateFormat;
 import bus.KhoaHocBUS;
+import bus.KyThiBUS;
 import bus.LichHocBUS;
 import bus.PhanHoiBUS;
 
@@ -22,10 +26,16 @@ public class Run {
 		 * lh.setThoiGianHoc("05/07/2015 7:28 PM"); LichHocBUS bus = new
 		 * LichHocBUS(); bus.add(lh);
 		 */
-		List<PhanHoiHocVien> lst = new PhanHoiBUS().getAllNew(3);
+		List<KyThi> lstKy = new KyThiDAO().getStarted();
 
-		for (PhanHoiHocVien ph : lst) {
-			System.out.println(ph.getNoiDung());
+		for (KyThi kt : lstKy) {
+			System.out.println(kt.getTen());
+		}
+		
+		List<HighScoreModel> lstHs = new KyThiBUS().getHighScore();
+		
+		for(HighScoreModel m:lstHs){
+			System.out.println(m.getDiem());
 		}
 
 		System.out.println("Chào bạn");
