@@ -1,5 +1,7 @@
 package controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.LoginModel;
@@ -17,27 +19,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import pojo.TaiKhoan;
 import utils.ConnectionFactory;
+import utils.CookieHelper;
 
 @Controller
 @RequestMapping(value = "/tknhanvien")
 public class StaffAccountController {
 	@RequestMapping(value = "/dangnhap", method = RequestMethod.GET)
-	public String login(ModelMap m) {
+	public String login(ModelMap m, HttpServletRequest request) {
 		m.addAttribute("obj", new LoginModel());
 
 		return "stafflogin";
 	}
 
 	@RequestMapping(value = "/dangxuat", method = RequestMethod.POST)
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session, HttpServletResponse respond) {
 		session.removeAttribute("accStaff");
+		CookieHelper.expireCookie("accStaff", respond);
 
 		return "redirect:/tknhanvien/dangnhap";
 	}
 
 	@RequestMapping(value = "/dangnhap", method = RequestMethod.POST)
 	public String login(@ModelAttribute("obj") LoginModel login, Model model,
-			HttpSession session) {
+			HttpSession session, HttpServletResponse respond) {
 
 		SessionFactory fac = ConnectionFactory.getSessionFactory();
 		Session sess = fac.openSession();
@@ -69,7 +73,11 @@ public class StaffAccountController {
 				user.setId(login.getId());
 
 				session.setAttribute("accStaff", user);
-				
+
+				if (login.getRemember().equals("checked") == true) {
+					CookieHelper.saveCookie("accStaff", user.getId(), respond);
+				}
+
 			} else {
 				model.addAttribute("status", "Đăng nhập thất bại");
 				model.addAttribute("obj", login);

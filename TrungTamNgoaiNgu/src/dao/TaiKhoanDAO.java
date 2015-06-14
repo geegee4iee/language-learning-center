@@ -42,4 +42,21 @@ public class TaiKhoanDAO {
 
 		return flag;
 	}
+
+	public TaiKhoan get(String id) {
+		TaiKhoan tk = null;
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+
+		try {
+			sess.getTransaction().begin();
+			tk = (TaiKhoan) sess.get(TaiKhoan.class, id);
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return tk;
+	}
 }

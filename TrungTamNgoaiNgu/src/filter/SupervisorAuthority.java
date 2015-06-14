@@ -13,20 +13,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bus.TaiKhoanBUS;
-import utils.CookieHelper;
 import model.SessionUserModel;
+import utils.CookieHelper;
+import bus.TaiKhoanBUS;
 
 /**
  * Servlet Filter implementation class StaffAuthority
  */
-@WebFilter(filterName = "ManagerAuthority", urlPatterns = { "/quantri/*" })
-public class ManagerAuthority implements Filter {
+@WebFilter(filterName = "StaffAuthority", urlPatterns = { "/bangiamdoc/*" })
+public class SupervisorAuthority implements Filter {
 
 	/**
 	 * Default constructor.
 	 */
-	public ManagerAuthority() {
+	public SupervisorAuthority() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -47,7 +47,6 @@ public class ManagerAuthority implements Filter {
 		HttpServletRequest rq = (HttpServletRequest) request;
 		HttpServletResponse rs = (HttpServletResponse) response;
 		HttpSession session = rq.getSession();
-		System.out.println("Second run");
 
 		if (session.getAttribute("accStaff") == null) {
 			rs.sendRedirect(rq.getContextPath() + "/tknhanvien/dangnhap");
@@ -58,7 +57,7 @@ public class ManagerAuthority implements Filter {
 				SessionUserModel user = new TaiKhoanBUS().getSession(id);
 				session.setAttribute("accStaff", user);
 
-				if (user.getPermission() != 4) {
+				if (user.getPermission() != 3) {
 					rs.sendRedirect(rq.getContextPath() + "/home/khongco");
 				}
 			} else {
@@ -68,7 +67,7 @@ public class ManagerAuthority implements Filter {
 			SessionUserModel user = (SessionUserModel) session
 					.getAttribute("accStaff");
 
-			if (user.getPermission() != 4) {
+			if (user.getPermission() != 3) {
 				rs.sendRedirect(rq.getContextPath() + "/home/khongco");
 			}
 		}

@@ -13,20 +13,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bus.TaiKhoanBUS;
-import utils.CookieHelper;
 import model.SessionUserModel;
+import utils.CookieHelper;
+import bus.TaiKhoanBUS;
 
 /**
  * Servlet Filter implementation class StaffAuthority
  */
-@WebFilter(filterName = "ManagerAuthority", urlPatterns = { "/quantri/*" })
-public class ManagerAuthority implements Filter {
+@WebFilter(filterName = "StaffAuthority", urlPatterns = { "/*" })
+public class LoadCookie implements Filter {
 
 	/**
 	 * Default constructor.
 	 */
-	public ManagerAuthority() {
+	public LoadCookie() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -45,31 +45,24 @@ public class ManagerAuthority implements Filter {
 		// TODO Auto-generated method stub
 		// place your code here
 		HttpServletRequest rq = (HttpServletRequest) request;
-		HttpServletResponse rs = (HttpServletResponse) response;
 		HttpSession session = rq.getSession();
-		System.out.println("Second run");
+		System.out.println("First run");
 
 		if (session.getAttribute("accStaff") == null) {
-			rs.sendRedirect(rq.getContextPath() + "/tknhanvien/dangnhap");
-			/*String id = CookieHelper.getCookie("accStaff", rq);
-			System.out.println(id);
+			String id = CookieHelper.getCookie("accStaff", rq);
 
 			if (id != null) {
 				SessionUserModel user = new TaiKhoanBUS().getSession(id);
 				session.setAttribute("accStaff", user);
+			}
+		}
+		
+		if(session.getAttribute("acc") == null){
+			String id = CookieHelper.getCookie("acc", rq);
 
-				if (user.getPermission() != 4) {
-					rs.sendRedirect(rq.getContextPath() + "/home/khongco");
-				}
-			} else {
-				rs.sendRedirect(rq.getContextPath() + "/tknhanvien/dangnhap");
-			}*/
-		} else {
-			SessionUserModel user = (SessionUserModel) session
-					.getAttribute("accStaff");
-
-			if (user.getPermission() != 4) {
-				rs.sendRedirect(rq.getContextPath() + "/home/khongco");
+			if (id != null) {
+				SessionUserModel user = new TaiKhoanBUS().getSession(id);
+				session.setAttribute("acc", user);
 			}
 		}
 

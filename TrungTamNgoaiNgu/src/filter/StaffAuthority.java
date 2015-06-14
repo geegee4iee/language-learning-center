@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.SessionUserModel;
-
-import org.springframework.security.web.context.HttpRequestResponseHolder;
+import utils.CookieHelper;
+import bus.TaiKhoanBUS;
 
 /**
  * Servlet Filter implementation class StaffAuthority
@@ -50,6 +50,18 @@ public class StaffAuthority implements Filter {
 
 		if (session.getAttribute("accStaff") == null) {
 			rs.sendRedirect(rq.getContextPath() + "/tknhanvien/dangnhap");
+			/*String id = CookieHelper.getCookie("accStaff", rq);
+
+			if (id != null) {
+				SessionUserModel user = new TaiKhoanBUS().getSession(id);
+				session.setAttribute("accStaff", user);
+
+				if (user.getPermission() != 2) {
+					rs.sendRedirect(rq.getContextPath() + "/home/khongco");
+				}
+			} else {
+				rs.sendRedirect(rq.getContextPath() + "/tknhanvien/dangnhap");
+			}*/
 		} else {
 			SessionUserModel user = (SessionUserModel) session
 					.getAttribute("accStaff");
