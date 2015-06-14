@@ -31,7 +31,7 @@ public class KyThiController {
 		return "listkythi";
 	}
 
-	@RequestMapping(value = "/danhsanh", method = RequestMethod.GET)
+	@RequestMapping(value = "/danhsach", method = RequestMethod.GET)
 	public String getDanhSach(ModelMap m) {
 		List<KyThi> lst = new KyThiBUS().getStarted();
 		List<KyThi> lstUn = new KyThiBUS().getUnStart();
