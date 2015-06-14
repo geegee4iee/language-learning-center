@@ -14,7 +14,7 @@ public class TaiKhoanDAO {
 		boolean flag = false;
 		TaiKhoan tk = new TaiKhoan();
 		tk.setId(tkM.getId());
-		tk.setMatKhau(tkM.getId());
+		tk.setMatKhau(tkM.getPassword());
 		tk.setQuyenHan(new QuyenHan(tkM.getPermission(), ""));
 
 		SessionFactory fac = ConnectionFactory.getSessionFactory();
