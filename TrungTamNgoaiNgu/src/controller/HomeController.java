@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import bus.KhoaHocBUS;
 import bus.KyThiBUS;
+import bus.PhanHoiBUS;
 import pojo.KhoaHoc;
+import pojo.PhanHoiHocVien;
 
 @Controller
 @RequestMapping(value = "/home")
@@ -23,9 +25,11 @@ public class HomeController {
 	public String index(Model m) {
 		List<KhoaHoc> lst = new KhoaHocBUS().getAll();
 		List<HighScoreModel> lstHs = new KyThiBUS().getHighScore();
+		List<PhanHoiHocVien> lstPh = new PhanHoiBUS().getAllNew(3);
 
 		m.addAttribute("lst", lst);
 		m.addAttribute("lstHs", lstHs);
+		m.addAttribute("lstPh", lstPh);
 		return "index";
 	}
 

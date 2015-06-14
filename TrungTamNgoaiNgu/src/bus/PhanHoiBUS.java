@@ -17,4 +17,8 @@ public class PhanHoiBUS {
 	public boolean remove(int hocVien, String thoiGian) {
 		return new PhanHoiDAO().remove(hocVien, thoiGian);
 	}
+
+	public List<PhanHoiHocVien> getAllNew(int quantity) {
+		return new PhanHoiDAO().getAllNew(quantity);
+	}
 }

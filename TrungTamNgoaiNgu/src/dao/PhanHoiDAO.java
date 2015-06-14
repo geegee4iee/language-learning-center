@@ -34,6 +34,26 @@ public class PhanHoiDAO {
 	}
 
 	@SuppressWarnings("unchecked")
+	public List<PhanHoiHocVien> getAllNew(int quantity) {
+		List<PhanHoiHocVien> lst = new ArrayList<PhanHoiHocVien>();
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+
+		try {
+			sess.getTransaction().begin();
+			Query query = sess
+					.createQuery("from PhanHoiHocVien order by thoiGian asc");
+			lst = query.setMaxResults(quantity).list();
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return lst;
+	}
+
+	@SuppressWarnings("unchecked")
 	public List<PhanHoiHocVien> getAll(int month, int year) {
 		List<PhanHoiHocVien> lst = new ArrayList<PhanHoiHocVien>();
 		Date date = new Date();
