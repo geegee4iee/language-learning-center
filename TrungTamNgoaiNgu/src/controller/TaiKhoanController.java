@@ -154,9 +154,10 @@ public class TaiKhoanController {
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session,HttpServletResponse respond) {
 		if (session.getAttribute("acc") != null) {
 			session.removeAttribute("acc");
+			CookieHelper.expireCookie("acc", respond);
 		}
 
 		return "redirect:/home/index";
