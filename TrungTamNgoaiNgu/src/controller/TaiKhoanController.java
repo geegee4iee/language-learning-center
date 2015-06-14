@@ -114,9 +114,9 @@ public class TaiKhoanController {
 			sess.getTransaction().begin();
 
 			Query query = sess
-					.createQuery("from TaiKhoan tk where tk.id=:id and tk.matKhau=:password and permission = 0");
+					.createQuery("from TaiKhoan tk where tk.id=:id and tk.matKhau=:password and quyenHan=:quyenHan");
 			query.setString("id", login.getId());
-			
+			query.setParameter("quyenHan", new QuyenHan(1, ""));
 			query.setString("password",EncryptPassword.md5(login.getPassword()));
 
 			if (query.uniqueResult() != null) {
