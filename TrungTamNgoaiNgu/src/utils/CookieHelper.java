@@ -17,7 +17,7 @@ public class CookieHelper {
 
 	public static void expireCookie(String cookieName,
 			HttpServletResponse respond) {
-		Cookie cookie = new Cookie("accStaff", "");
+		Cookie cookie = new Cookie(cookieName, "");
 		cookie.setMaxAge(0);
 		cookie.setPath("/TrungTamNgoaiNgu/");
 		respond.addCookie(cookie);
