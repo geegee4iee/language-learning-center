@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import pojo.ChuDe;
 import pojo.DangKyThiId;
 import pojo.HocVien;
 import pojo.KyThi;
+import bus.ChuDeBUS;
 import bus.HocVienBUS;
 import bus.KyThiBUS;
 
@@ -26,7 +28,7 @@ public class KyThiController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String getList(ModelMap model) {
 		List<KyThi> lst = new KyThiBUS().getUnStart();
-
+		
 		model.addAttribute("lstKyThi", lst);
 		return "listkythi";
 	}
@@ -35,7 +37,9 @@ public class KyThiController {
 	public String getDanhSach(ModelMap m) {
 		List<KyThi> lst = new KyThiBUS().getStarted();
 		List<KyThi> lstUn = new KyThiBUS().getUnStart();
-
+		List<ChuDe> cd = new ChuDeBUS().getAll();
+		m.addAttribute("lstCd", cd); // Danh sách chủ đề
+		
 		m.addAttribute("lstKt", lst);
 		m.addAttribute("lstKtUn", lstUn);
 

@@ -157,8 +157,30 @@
             <div id="register" class="navbar-collapse collapse navbar-left">
 			
               <ul id="top-menu" class="nav navbar-nav  navbar-right">
-                <li><a href="${pageContext.request.contextPath }/account/login">ĐĂNG NHẬP</a></li>
-                <li><a href="${pageContext.request.contextPath }/account/register">ĐĂNG KÝ</a></li>
+                <%
+								if (session.getAttribute("acc") != null) {
+									SessionUserModel log = (SessionUserModel) session
+											.getAttribute("acc");
+							%>
+							<li>
+								<a href="#">
+									<%out.print("Xin chào " + log.getName());%>
+								</a>
+							</li>
+							<li>
+								<a href="${pageContext.request.contextPath}/account/logout">
+									THOÁT
+								</a>
+							</li>		
+									
+							<%
+								}else{
+							%>
+							
+							<li><a href="${pageContext.request.contextPath}/account/register">ĐĂNG KÝ</a></li>
+
+							<li><a href="${pageContext.request.contextPath}/account/login">ĐĂNG NHẬP</a></li>
+							<%} %>
               </ul>
            
             </div><!--/.nav-collapse -->
@@ -167,7 +189,7 @@
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Search">
 				</div>
-				<button type="submit" class="btn btn-default">Submit</button>
+				<button type="submit" class="btn btn-default">Tìm kiếm</button>
 			</form>
           </div>     
         </nav>  

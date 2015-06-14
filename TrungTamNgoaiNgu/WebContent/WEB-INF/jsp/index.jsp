@@ -118,7 +118,7 @@ pageEncoding="UTF-8"%>
 							</li>
 							<li>
 								<a href="${pageContext.request.contextPath}/account/logout">
-									Thoát
+									THOÁT
 								</a>
 							</li>		
 									
@@ -126,9 +126,9 @@ pageEncoding="UTF-8"%>
 								}else{
 							%>
 							
-							<li><a href="${pageContext.request.contextPath}/account/register">Register</a></li>
+							<li><a href="${pageContext.request.contextPath}/account/register">ĐĂNG KÝ</a></li>
 
-							<li><a href="${pageContext.request.contextPath}/account/login">Login</a></li>
+							<li><a href="${pageContext.request.contextPath}/account/login">ĐĂNG NHẬP</a></li>
 							<%} %>
               </ul>
            
@@ -138,7 +138,7 @@ pageEncoding="UTF-8"%>
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Search">
 				</div>
-				<button type="submit" class="btn btn-default">Submit</button>
+				<button type="submit" class="btn btn-default">Tìm kiếm</button>
 			</form>
           </div>     
         </nav>  

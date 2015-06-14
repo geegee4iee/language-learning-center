@@ -11,7 +11,7 @@
 			<div class="col-lg-6 col-md-6 col-sm-6">
                   <div class="single_course wow fadeInUp">
                     <div class="singCourse_imgarea">
-                      <img src="${pageContext.request.contextPath }/resources/img/khoahoc/${item.id }.jpg" />
+                      <img src="${pageContext.request.contextPath }/resources/img/course-2.jpg" />
                       <div class="mask">                         
                         <a href="${pageContext.request.contextPath }/khoahoc/lichhoc/${item.id}" class="course_more">XEM KHÓA HỌC</a>
                       </div>
@@ -35,10 +35,12 @@
 			<div class="col-lg-6 col-md-6 col-sm-6">
                   <div class="single_course wow fadeInUp">
                     <div class="singCourse_imgarea">
-                      <img src="${pageContext.request.contextPath }/resources/img/khoahoc/${item.id }.jpg" />
+                      <img src="${pageContext.request.contextPath }/resources/img/course-1.jpg" />
                       <div class="mask">                         
                         <a href="${pageContext.request.contextPath }/khoahoc/lichhoc/${item.id}" class="course_more">XEM KHÓA HỌC</a>
+                        <a href="${pageContext.request.contextPath }/khoahoc/dangky/${item.id}" class="course_more">ĐĂNG KÝ</a>
                       </div>
+                     
                     </div>
                     <div class="singCourse_content">
                     <h3 class="singCourse_title"><a href="course-single.html">${item.ten }</a></h3>
