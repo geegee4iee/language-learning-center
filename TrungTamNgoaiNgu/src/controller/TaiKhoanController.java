@@ -3,6 +3,7 @@ package controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import bus.ChuDeBUS;
+import pojo.ChuDe;
 import pojo.HocVien;
 import pojo.QuyenHan;
 import pojo.TaiKhoan;
@@ -40,6 +43,8 @@ public class TaiKhoanController {
 		if (session.getAttribute("acc") != null) {
 			return "redirect:/home/index";
 		}
+		List<ChuDe> cd = new ChuDeBUS().getAll();
+		model.addAttribute("lstCd", cd); // Danh sách chủ đề
 		model.put("acc", new LoginModel());
 		model.addAttribute("required", required);
 		return "login";
@@ -48,6 +53,8 @@ public class TaiKhoanController {
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String register(ModelMap model) {
 		model.put("reg", new RegisterModel());
+		List<ChuDe> cd = new ChuDeBUS().getAll();
+		model.addAttribute("lstCd", cd); // Danh sách chủ đề
 		return "register";
 	}
 

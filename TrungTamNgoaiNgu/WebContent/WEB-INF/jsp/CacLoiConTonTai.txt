@@ -1,0 +1,1 @@
+Trang login của khách hàng chưa redirec về home/index
