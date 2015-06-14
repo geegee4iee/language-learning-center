@@ -42,7 +42,7 @@ public class PhanHoiDAO {
 		try {
 			sess.getTransaction().begin();
 			Query query = sess
-					.createQuery("from PhanHoiHocVien order by thoiGian asc");
+					.createQuery("from PhanHoiHocVien order by thoiGian desc");
 			lst = query.setMaxResults(quantity).list();
 			sess.getTransaction().commit();
 		} catch (Exception e) {

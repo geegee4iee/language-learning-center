@@ -39,6 +39,11 @@ public class Run {
 		}
 
 		System.out.println("Chào bạn");
+		
+		List<PhanHoiHocVien> lstPh = new PhanHoiBUS().getAllNew(5);
+		for(PhanHoiHocVien ph:lstPh){
+			System.out.println(ph.getNoiDung());
+		}
 	}
 
 }

@@ -58,7 +58,7 @@ public class KyThiDAO {
 		try {
 			sess.getTransaction().begin();
 			Query query = sess
-					.createQuery("from KyThi where thoiGianThi < :date");
+					.createQuery("from KyThi where thoiGianThi < :date order by thoiGianThi desc");
 			query.setParameter("date", new Date());
 			lst = query.setMaxResults(5).list();
 			sess.getTransaction().commit();
