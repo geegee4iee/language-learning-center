@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -273,7 +274,7 @@ pageEncoding="UTF-8"%>
         <div class="row">
           <div class="col-lg-12 col-md-12"> 
             <div class="title_area">
-              <h2 class="title_two">Our Courses</h2>
+              <h2 class="title_two">Danh sách khóa học</h2>
               <span></span> 
             </div>
           </div>
@@ -284,121 +285,30 @@ pageEncoding="UTF-8"%>
           <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="ourCourse_content">
               <ul class="course_nav">
+              <c:forEach items="${lst }" var="item">
                 <li>
                   <div class="single_course">
                     <div class="singCourse_imgarea">
                       <img src="${pageContext.request.contextPath }/resources/img/course-1.jpg" />
                       <div class="mask">                         
-                        <a href="#" class="course_more">View Course</a>
+                        <a href="${pageContext.request.contextPath }/khoahoc/lichhoc/${item.id}" class="course_more">XEM KHÓA HỌC</a>
                       </div>
                     </div>
                     <div class="singCourse_content">
-                    <h3 class="singCourse_title"><a href="#">Introduction To Matrix</a></h3>
-                    <p class="singCourse_price"><span>$20</span> Per One Month</p>
-                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                    <h3 class="singCourse_title"><a href="course-single.html">${item.ten }</a></h3>
+                    <p class="singCourse_price"><span>${item.chuDe.ten }</span></p>
+                    <p> Khóa học bắt đầu từ 
+                    	<fmt:formatDate pattern="dd/MM/yyyy" value="${item.ngayBatDau }" />
+						và kết thúc vào ngày 
+						<fmt:formatDate pattern="dd/MM/yyyy" value="${item.ngayKetThuc }" />
+											
+					</p>
                     </div>
-                    <div class="singCourse_author">
-                      <img src="${pageContext.request.contextPath }/resources/img/author.jpg" alt="img">
-                      <p>Richard Remus, Teacher</p>
-                    </div>
+                    
                   </div>
                 </li>
-                <li>
-                  <div class="single_course">
-                    <div class="singCourse_imgarea">
-                      <img src="${pageContext.request.contextPath }/resources/img/course-2.jpg" />
-                      <div class="mask">                         
-                        <a href="#" class="course_more">View Course</a>
-                      </div>
-                    </div>
-                    <div class="singCourse_content">
-                    <h3 class="singCourse_title"><a href="#">Introduction To Matrix</a></h3>
-                    <p class="singCourse_price"><span>$20</span> Per One Month</p>
-                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                    </div>
-                    <div class="singCourse_author">
-                      <img src="${pageContext.request.contextPath }/resources/img/author.jpg" alt="img">
-                      <p>Richard Remus, Teacher</p>
-                    </div>
-                  </div>
-                </li> 
-                <li>
-                  <div class="single_course">
-                    <div class="singCourse_imgarea">
-                      <img src="${pageContext.request.contextPath }/resources/img/course-1.jpg" />
-                      <div class="mask">                         
-                        <a href="#" class="course_more">View Course</a>
-                      </div>
-                    </div>
-                    <div class="singCourse_content">
-                    <h3 class="singCourse_title"><a href="#">Introduction To Matrix</a></h3>
-                    <p class="singCourse_price"><span>$20</span> Per One Month</p>
-                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                    </div>
-                    <div class="singCourse_author">
-                      <img src="${pageContext.request.contextPath }/resources/img/author.jpg" alt="img">
-                      <p>Richard Remus, Teacher</p>
-                    </div>
-                  </div>
-                </li>  
-                <li>
-                  <div class="single_course">
-                    <div class="singCourse_imgarea">
-                      <img src="${pageContext.request.contextPath }/resources/img/course-2.jpg" />
-                      <div class="mask">                         
-                        <a href="#" class="course_more">View Course</a>
-                      </div>
-                    </div>
-                    <div class="singCourse_content">
-                    <h3 class="singCourse_title"><a href="#">Introduction To Matrix</a></h3>
-                    <p class="singCourse_price"><span>$20</span> Per One Month</p>
-                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                    </div>
-                    <div class="singCourse_author">
-                      <img src="${pageContext.request.contextPath }/resources/img/author.jpg" alt="img">
-                      <p>Richard Remus, Teacher</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="single_course">
-                    <div class="singCourse_imgarea">
-                      <img src="${pageContext.request.contextPath }/resources/img/course-1.jpg" />
-                      <div class="mask">                         
-                        <a href="#" class="course_more">View Course</a>
-                      </div>
-                    </div>
-                    <div class="singCourse_content">
-                    <h3 class="singCourse_title"><a href="#">Introduction To Matrix</a></h3>
-                    <p class="singCourse_price"><span>$20</span> Per One Month</p>
-                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                    </div>
-                    <div class="singCourse_author">
-                      <img src="${pageContext.request.contextPath }/resources/img/author.jpg" alt="img">
-                      <p>Richard Remus, Teacher</p>
-                    </div>
-                  </div>
-                </li> 
-                <li>
-                  <div class="single_course">
-                    <div class="singCourse_imgarea">
-                      <img src="${pageContext.request.contextPath }/resources/img/course-2.jpg" />
-                      <div class="mask">                         
-                        <a href="#" class="course_more">View Course</a>
-                      </div>
-                    </div>
-                    <div class="singCourse_content">
-                    <h3 class="singCourse_title"><a href="#">Introduction To Matrix</a></h3>
-                    <p class="singCourse_price"><span>$20</span> Per One Month</p>
-                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                    </div>
-                    <div class="singCourse_author">
-                      <img src="${pageContext.request.contextPath }/resources/img/author.jpg" alt="img">
-                      <p>Richard Remus, Teacher</p>
-                    </div>
-                  </div>
-                </li>                
-              </ul>
+                </c:forEach>
+                </ul>
             </div>
           </div>
         </div>
@@ -414,7 +324,7 @@ pageEncoding="UTF-8"%>
         <div class="row">
           <div class="col-lg-12 col-md-12"> 
             <div class="title_area">
-              <h2 class="title_two">Our Tutors</h2>
+              <h2 class="title_two">NHỮNG HỌC VIÊN ĐIỂM CAO</h2>
               <span></span> 
             </div>
           </div>
@@ -427,108 +337,29 @@ pageEncoding="UTF-8"%>
             <div class="ourTutors_content">
               <!-- Start Tutors nav -->
               <ul class="tutors_nav">
-              
-                <li>
-                  <div class="single_tutors">
-                    <div class="tutors_thumb">
-                      <img src="${pageContext.request.contextPath }/resources/img/course-1.jpg" />                      
-                    </div>
-                    <div class="singTutors_content">
-                      <h3 class="tutors_name">Jame Burns</h3>
-                      <span>Technology Teacher</span>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-                    </div>
-                    <div class="singTutors_social">
-                      <ul class="tutors_socnav">
-                        <li><a class="fa fa-facebook" href="#"></a></li>
-                        <li><a class="fa fa-twitter" href="#"></a></li>
-                        <li><a class="fa fa-instagram" href="#"></a></li>
-                        <li><a class="fa fa-google-plus" href="#"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="single_tutors">
-                    <div class="tutors_thumb">
-                      <img src="${pageContext.request.contextPath }/resources/img/author.jpg" />                      
-                    </div>
-                    <div class="singTutors_content">
-                      <h3 class="tutors_name">Jame Burns</h3>
-                      <span>Technology Teacher</span>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-                    </div>
-                    <div class="singTutors_social">
-                      <ul class="tutors_socnav">
-                        <li><a class="fa fa-facebook" href="#"></a></li>
-                        <li><a class="fa fa-twitter" href="#"></a></li>
-                        <li><a class="fa fa-instagram" href="#"></a></li>
-                        <li><a class="fa fa-google-plus" href="#"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="single_tutors">
-                    <div class="tutors_thumb">
-                      <img src="${pageContext.request.contextPath }/resources/img/course-1.jpg" />                      
-                    </div>
-                    <div class="singTutors_content">
-                      <h3 class="tutors_name">Jame Burns</h3>
-                      <span>Technology Teacher</span>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-                    </div>
-                    <div class="singTutors_social">
-                      <ul class="tutors_socnav">
-                        <li><a class="fa fa-facebook" href="#"></a></li>
-                        <li><a class="fa fa-twitter" href="#"></a></li>
-                        <li><a class="fa fa-instagram" href="#"></a></li>
-                        <li><a class="fa fa-google-plus" href="#"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="single_tutors">
-                    <div class="tutors_thumb">
-                      <img src="${pageContext.request.contextPath }/resources/img/author.jpg" />                      
-                    </div>
-                    <div class="singTutors_content">
-                      <h3 class="tutors_name">Jame Burns</h3>
-                      <span>Technology Teacher</span>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-                    </div>
-                    <div class="singTutors_social">
-                      <ul class="tutors_socnav">
-                        <li><a class="fa fa-facebook" href="#"></a></li>
-                        <li><a class="fa fa-twitter" href="#"></a></li>
-                        <li><a class="fa fa-instagram" href="#"></a></li>
-                        <li><a class="fa fa-google-plus" href="#"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="single_tutors">
-                    <div class="tutors_thumb">
-                      <img src="${pageContext.request.contextPath }/resources/img/course-1.jpg" />                      
-                    </div>
-                    <div class="singTutors_content">
-                      <h3 class="tutors_name">Jame Burns</h3>
-                      <span>Technology Teacher</span>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-                    </div>
-                    <div class="singTutors_social">
-                      <ul class="tutors_socnav">
-                        <li><a class="fa fa-facebook" href="#"></a></li>
-                        <li><a class="fa fa-twitter" href="#"></a></li>
-                        <li><a class="fa fa-instagram" href="#"></a></li>
-                        <li><a class="fa fa-google-plus" href="#"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>                                             
-              </ul>
+              	<c:forEach items="${lstHs }" var="item">
+	                <li>
+	                  <div class="single_tutors">
+	                    <div class="tutors_thumb">
+	                      <img src="${pageContext.request.contextPath }/resources/img/course-1.jpg" />                      
+	                    </div>
+	                    <div class="singTutors_content">
+	                      <h3 class="tutors_name">${item.hoTen }</h3>
+	                      <span>${item.tenKyThi }</span>
+	                      <p>Số điểm đạt được trong kỳ thi: ${item.diem }</p>
+	                    </div>
+	                    <div class="singTutors_social">
+	                      <ul class="tutors_socnav">
+	                        <li><a class="fa fa-facebook" href="#"></a></li>
+	                        <li><a class="fa fa-twitter" href="#"></a></li>
+	                        <li><a class="fa fa-instagram" href="#"></a></li>
+	                        <li><a class="fa fa-google-plus" href="#"></a></li>
+	                      </ul>
+	                    </div>
+	                  </div>
+	                </li>
+                </c:forEach>
+                </ul>
             </div>
           </div>
         </div>
@@ -544,7 +375,7 @@ pageEncoding="UTF-8"%>
         <div class="row">
           <div class="col-lg-12 col-md-12"> 
             <div class="title_area">
-              <h2 class="title_two">What our Student says</h2>
+              <h2 class="title_two">Học viên nói gì về Chúng tôi</h2>
               <span></span> 
             </div>
           </div>
@@ -557,50 +388,23 @@ pageEncoding="UTF-8"%>
             <div class="studentsTestimonial_content">              
               <div class="row">
                 <!-- start single student testimonial -->
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                  <div class="single_stsTestimonial wow fadeInUp">
-                    <div class="stsTestimonial_msgbox">
-                      <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                    </div>
-                    <img class="stsTesti_img" src="${pageContext.request.contextPath }/resources/img/author.jpg" alt="img">
-                    <div class="stsTestimonial_content">
-                      <h3>Johnathan Doe</h3>                      
-                      <span>Ex. Student</span>
-                      <p>Software Department</p>
-                    </div>
-                  </div>
-                </div>
+                <c:forEach items="${lstPh }" var="item">
+	                <div class="col-lg-4 col-md-4 col-sm-4">
+	                  <div class="single_stsTestimonial wow fadeInUp">
+	                    <div class="stsTestimonial_msgbox">
+	                      <p>${item.noiDung }</p>
+	                    </div>
+	                    <img class="stsTesti_img" src="${pageContext.request.contextPath }/resources/img/author.jpg" alt="img">
+	                    <div class="stsTestimonial_content">
+	                      <h3>${item.hocVien.hoTen }</h3>                      
+	                      <span>Ex. Student</span>
+	                      <p>Software Department</p>
+	                    </div>
+	                  </div>
+	                </div>
+                </c:forEach>
                 <!-- End single student testimonial -->
-                <!-- start single student testimonial -->
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                  <div class="single_stsTestimonial wow fadeInUp">
-                    <div class="stsTestimonial_msgbox">
-                      <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book.scrambled it to make a type specimen book</p>
-                    </div>
-                    <img class="stsTesti_img" src="${pageContext.request.contextPath }/resources/img/author.jpg" alt="img">
-                    <div class="stsTestimonial_content">
-                      <h3>Johnathan Doe</h3>                      
-                      <span>Ex. Student</span>
-                      <p>Software Department</p>
-                    </div>
-                  </div>
-                </div>
-                <!-- End single student testimonial -->
-                <!-- start single student testimonial -->
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                  <div class="single_stsTestimonial wow fadeInUp">
-                    <div class="stsTestimonial_msgbox">
-                      <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                    </div>
-                    <img class="stsTesti_img" src="${pageContext.request.contextPath }/resources/img/author.jpg" alt="img">
-                    <div class="stsTestimonial_content">
-                      <h3>Johnathan Doe</h3>                      
-                      <span>Ex. Student</span>
-                      <p>Software Department</p>
-                    </div>
-                  </div>
-                </div>
-                <!-- End single student testimonial -->
+               
               </div>
             </div>
           </div>

@@ -101,7 +101,7 @@ img{
 /*scrol to top*/
 
 .scrollToTop {
-  background: url("img/bootom-top-arrow.png") no-repeat scroll 13px 12px #ffffff;
+  background: url("../../img/bootom-top-arrow.png") no-repeat scroll 13px 12px #ffffff;
   border: 3px solid #f0f1f3;
   border-radius: 5px;
   bottom: 20px;
@@ -484,7 +484,7 @@ img{
   width: 100%;
   min-height: 350px;
   padding: 85px 0px;
-  background-image: url(img/skills_bg.jpg);
+  background-image: url(../../img/skills_bg.jpg);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: relative;
@@ -701,7 +701,7 @@ div[data-dimension] {
 }
 .course_nav .slick-prev {
   left: -37px;
-  background-image: url("img/course-nav-prev.png");
+  background-image: url("../../img/course-nav-prev.png");
   background-color: transparent;
   background-position: center center;
   background-repeat: no-repeat;
@@ -709,7 +709,7 @@ div[data-dimension] {
   width: 36px;
 }
 .course_nav .slick-next {  
-  background-image: url("img/course-nav-next.png");
+  background-image: url("../../img/course-nav-next.png");
   background-color: transparent;
   background-position: center center;
   background-repeat: no-repeat;
@@ -1411,14 +1411,14 @@ div[data-dimension] {
   width: 100%;
 }
 .events_slider .slick-prev {  
-  background-image: url("img/nav-prev.png");
+  background-image: url("../../img/nav-prev.png");
   background-repeat: no-repeat;
   height: 30px;
   width: 30px;
   background-position: center;
 }
 .events_slider .slick-next {  
-  background-image: url("img/nav-next.png");
+  background-image: url("../../img/nav-next.png");
   background-repeat: no-repeat;
   height: 30px;
   width: 30px;

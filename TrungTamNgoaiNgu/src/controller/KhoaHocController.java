@@ -91,7 +91,7 @@ public class KhoaHocController {
 			HttpSession session) {
 
 		if (session.getAttribute("acc") == null) {
-			m.addAttribute("required", "/khoahoc/list");
+			m.addAttribute("required", "/khoahoc/danhsach");
 			return "redirect:/account/login";
 		}
 
