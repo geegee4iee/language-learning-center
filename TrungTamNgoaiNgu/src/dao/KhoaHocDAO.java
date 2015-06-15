@@ -2,6 +2,7 @@ package dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import model.KhoaHocManagerModel;
 
@@ -13,7 +14,9 @@ import org.hibernate.SessionFactory;
 import pojo.ChuDe;
 import pojo.DangKyKhoaHoc;
 import pojo.KhoaHoc;
+import pojo.LichHoc;
 import pojo.NhanVien;
+import pojo.ThongBaoKhoaHoc;
 import utils.ConnectionFactory;
 import utils.DateFormat;
 
@@ -162,5 +165,40 @@ public class KhoaHocDAO {
 		}
 
 		return lstKh;
+	}
+
+	public boolean remove(int idKhoaHoc) {
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+
+		try {
+			sess.getTransaction().begin();
+			KhoaHoc kh = (KhoaHoc) sess.get(KhoaHoc.class, idKhoaHoc);
+			Set<DangKyKhoaHoc> lstDk = kh.getDangKyKhoaHocs();
+			Set<LichHoc> lstLh = kh.getLichHocs();
+			Set<ThongBaoKhoaHoc> lstTb = kh.getThongBaoKhoaHocs();
+
+			for (DangKyKhoaHoc dk : lstDk) {
+				sess.delete(dk);
+			}
+
+			for (LichHoc lh : lstLh) {
+				sess.delete(lh);
+			}
+
+			for (ThongBaoKhoaHoc tb : lstTb) {
+				sess.delete(tb);
+			}
+
+			sess.delete(kh);
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sess.getTransaction().rollback();
+			return false;
+		}
+
+		return true;
 	}
 }

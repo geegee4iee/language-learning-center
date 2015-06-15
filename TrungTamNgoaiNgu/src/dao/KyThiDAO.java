@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import model.HighScoreModel;
+import model.KythiManagerModel;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -17,8 +18,31 @@ import pojo.DangKyThiId;
 import pojo.KhoaHoc;
 import pojo.KyThi;
 import utils.ConnectionFactory;
+import utils.DateFormat;
 
 public class KyThiDAO {
+	public boolean add(KythiManagerModel model) {
+		KyThi kt = new KyThi();
+		kt.setTen(model.getTen());
+		kt.setDiaDiem(model.getDiaDiem());
+		kt.setThoiGianThi(new DateFormat().getDateTime(model.getThoiGianThi()));
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+
+		try {
+			sess.getTransaction().begin();
+			sess.save(kt);
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sess.getTransaction().rollback();
+
+			return false;
+		}
+
+		return true;
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<KyThi> getAll() {

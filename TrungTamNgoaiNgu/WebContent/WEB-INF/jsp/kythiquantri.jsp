@@ -30,6 +30,7 @@
                 <!-- /.row -->
                 <div class="row">
                 	<div class="col-md-12">
+                	<a class="btn btn-default" href="${pageContext.request.contextPath }/quantri/themkythi">Thêm kỳ thi</a>
                 	<h3>Kỳ thi đã diễn ra</h3>
                 		<table class="table">
                 		<thead>
@@ -57,7 +58,7 @@
 									
 								</td>
 								<td>
-									${item.soLuongDuThi }
+									${item.dangKyThis.size() }
 								</td>
 								<td>
 									${item.thoiGianThi }

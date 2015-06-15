@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javassist.compiler.ast.Stmnt;
+import model.ChuDeManagerModel;
+import model.KythiManagerModel;
 import model.NhanVienManagerModel;
 import model.RegisterModel;
 import model.TaiKhoanManagerModel;
@@ -28,6 +30,7 @@ import bus.KyThiBUS;
 import bus.NhanVienBUS;
 import bus.PhanHoiBUS;
 import bus.TaiKhoanBUS;
+import dao.ChuDeDAO;
 import dao.NhanVienDAO;
 import pojo.ChuDe;
 import pojo.DangKyKhoaHoc;
@@ -232,9 +235,9 @@ public class ManagerController {
 		m.addAttribute("obj", kt);
 		return "dangkythiquantri";
 	}
-	
-	@RequestMapping(value="/chuathi/{id}",method=RequestMethod.GET)
-	public String listChuaThi(ModelMap m,@PathVariable("id")int kyThi){
+
+	@RequestMapping(value = "/chuathi/{id}", method = RequestMethod.GET)
+	public String listChuaThi(ModelMap m, @PathVariable("id") int kyThi) {
 		List<DangKyThi> lst = new KyThiBUS().getReg(kyThi);
 		KyThi kt = new KyThiBUS().get(kyThi);
 
@@ -250,5 +253,70 @@ public class ManagerController {
 		new KyThiBUS().updateScore(new DangKyThiId(kyThi, hocVien), diem);
 
 		return "redirect:/quantri/kythi/" + kyThi;
+	}
+
+	@RequestMapping(value = "/themkythi", method = RequestMethod.GET)
+	public String viewAddKyThi(ModelMap m) {
+		m.addAttribute("obj", new KythiManagerModel());
+
+		return "addkythi";
+	}
+
+	@RequestMapping(value = "/themkythi", method = RequestMethod.POST)
+	public String addKyThi(@ModelAttribute("obj") KythiManagerModel ktModel) {
+		if (new KyThiBUS().add(ktModel) == true) {
+		} else {
+		}
+
+		return "redirect:/quantri/kythi";
+	}
+
+	@RequestMapping(value = "/chuyende", method = RequestMethod.GET)
+	public String viewChuyenDe(ModelMap m) {
+		m.addAttribute("lst", new ChuDeBUS().getAll());
+
+		return "chuyendequantri";
+	}
+
+	@RequestMapping(value = "/themchuyende", method = RequestMethod.GET)
+	public String addChuyenDe(ModelMap m) {
+		m.addAttribute("obj", new ChuDeManagerModel());
+
+		return "addchuyende";
+	}
+
+	@RequestMapping(value = "/themchuyende", method = RequestMethod.POST)
+	public String addChuyenDe(@ModelAttribute("obj") ChuDeManagerModel cdModel) {
+		if (new ChuDeBUS().add(cdModel) == true) {
+		} else {
+		}
+
+		return "redirect:/quantri/chuyende";
+	}
+
+	@RequestMapping(value = "/suachuyende/{id}", method = RequestMethod.GET)
+	public String editChuyenDe(@PathVariable("id") int idChuyenDe, ModelMap m) {
+		m.addAttribute("obj", new ChuDeBUS().get(idChuyenDe));
+
+		return "editchuyende";
+	}
+
+	@RequestMapping(value = "/suachuyende", method = RequestMethod.POST)
+	public String editChuyenDe(@ModelAttribute("obj") ChuDeManagerModel cdModel) {
+		if (new ChuDeBUS().update(cdModel) == true) {
+		} else {
+		}
+
+		return "redirect:/quantri/chuyende";
+	}
+
+	@RequestMapping(value = "/xoachuyende", method = RequestMethod.POST)
+	public String removeChuyenDe(@RequestParam("id") int idChuyenDe, ModelMap m) {
+		if (new ChuDeDAO().remove(idChuyenDe) == false) {
+			m.addAttribute("status", "Không thể xóa chuyên đề");
+		} else {
+		}
+
+		return "redirect:/quantri/chuyende";
 	}
 }

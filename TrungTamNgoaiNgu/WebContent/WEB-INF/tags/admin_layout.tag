@@ -91,6 +91,9 @@
 									href="${pageContext.request.contextPath }/quantri/nhanvien"><i
 										class="fa fa-user fa-fw"></i> Quản lý nhân viên</a></li>
 								<li><a
+									href="${pageContext.request.contextPath }/quantri/chuyende"><i
+										class="fa fa-dashboard fa-fw"></i> Quản lý chuyên đề</a></li>
+								<li><a
 									href="${pageContext.request.contextPath }/quantri/phanhoi"><i
 										class="fa fa-comments fa-fw"></i> Quản lý phản hồi</a></li>
 								<li><a

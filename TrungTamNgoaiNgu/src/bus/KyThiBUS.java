@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import model.HighScoreModel;
+import model.KythiManagerModel;
 import dao.KyThiDAO;
 import pojo.DangKyThi;
 import pojo.DangKyThiId;
@@ -14,6 +15,10 @@ public class KyThiBUS {
 
 	public List<KyThi> getAll() {
 		return new KyThiDAO().getAll();
+	}
+
+	public boolean add(KythiManagerModel model) {
+		return new KyThiDAO().add(model);
 	}
 
 	public List<HighScoreModel> getHighScore() {
