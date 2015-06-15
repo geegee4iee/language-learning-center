@@ -162,8 +162,7 @@ public class TaiKhoanController {
 		if (login.getRequired().length() != 0) {
 			return "redirect:" + login.getRequired();
 		} else {
-			model.addAttribute("login", login);
-			return "login";
+			return "redirect:/home/index";
 		}
 
 	}
