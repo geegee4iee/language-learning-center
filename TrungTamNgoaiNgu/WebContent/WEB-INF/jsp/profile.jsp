@@ -58,60 +58,70 @@
 		</script>
 	</jsp:attribute>
 	<jsp:attribute name="content">
-		<div class="col-md-12 ">
-			<h3 class="page-header">Thông tin tài khoản</h3>
-		
-		</div>
-		<f:form commandName="objPwd" method="POST" class="form-horizontal" action="changepwd">
-			
-			
-			<div class="form-group">
-				<label for="id" class="col-md-2 control-label">Tài khoản</label>
-				<div class="col-md-6">
-					<h4>${objPwd.id }</h4>
-					<f:input class="form-control" path="id" type="hidden"/>	
-			 	</div>					
-			</div>
-			<div class="form-group">
-				<label for="password" class="col-sm-2 control-label">Mật khẩu cũ</label>
-				<div class="col-md-6">
-					<f:input class="form-control" path="password" type="password"/>	
-				</div>					
-			</div>
-			<div class="form-group">
-				<label for="password" class="col-sm-2 control-label">Mật khẩu mới</label>
-				<div class="col-md-6">
-					<f:input class="form-control" path="passwordNew" type="password"/>	
-				</div>
-            </div>
-            <div class="form-group">
-				<label for="password" class="col-sm-2 control-label">Nhập lại</label>
-				<div class="col-md-6">
-					<input class="form-control" type="password" name="ConfirmPwd"/>	
-				</div>
-            </div>
-			<div class="form-group">
-			    <div class="col-sm-offset-2 col-sm-10">
-		      		<input type="submit" class="btn btn-default" value="Đổi mật khẩu">
-			    </div>
-			</div>
-	</f:form>
-	<div class="col-md-12 ">${status }</div>
+		<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#sectionA">Tài khoản</a></li>
+        <li><a data-toggle="tab" href="#sectionB">Section B</a></li>
+        <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a data-toggle="tab" href="#dropdown1">Dropdown1</a></li>
+                <li><a data-toggle="tab" href="#dropdown2">Dropdown2</a></li>
+            </ul>
+        </li>
+    </ul>
+	<div class="tab-content">
 	
-	<div class="col-md-12 ">
-			<h3 class="page-header">Thông tin cá nhân</h3>
+		<!-- -----------------------------sectionA-------------------------------- -->
 		
-		</div>
-		<f:form commandName="objHv" method="POST" class="form-horizontal" action="changeinfo">
-			
-			
-			<div class="form-group">
-					<label for="hoTen" class="col-md-2 control-label">Họ tên</label>
-					
+		<div id="sectionA" class="tab-pane fade in active">
+			<div class="col-md-12 ">
+				<h3 class="page-header">Thông tin tài khoản</h3>
+			</div>
+			<f:form commandName="objPwd" method="POST" class="form-horizontal" action="changepwd">
+				
+				
+				<div class="form-group">
+					<label for="id" class="col-md-2 control-label">Tài khoản</label>
 					<div class="col-md-6">
-					<f:input class="form-control" path="id" type="hidden"/>	
-						<f:input class="form-control" path="hoTen" />
-					</div>							
+						<h4>${objPwd.id }</h4>
+						<f:input class="form-control" path="id" type="hidden"/>	
+				 	</div>					
+				</div>
+				<div class="form-group">
+					<label for="password" class="col-sm-2 control-label">Mật khẩu cũ</label>
+					<div class="col-md-6">
+						<f:input class="form-control" path="password" type="password"/>	
+					</div>					
+				</div>
+				<div class="form-group">
+					<label for="password" class="col-sm-2 control-label">Mật khẩu mới</label>
+					<div class="col-md-6">
+						<f:input class="form-control" path="passwordNew" type="password"/>	
+					</div>
+	            </div>
+	            <div class="form-group">
+					<label for="password" class="col-sm-2 control-label">Nhập lại</label>
+					<div class="col-md-6">
+						<input class="form-control" type="password" name="ConfirmPwd"/>	
+					</div>
+	            </div>
+				<div class="form-group">
+				    <div class="col-sm-offset-2 col-sm-10">
+			      		<input type="submit" class="btn btn-default" value="Đổi mật khẩu">
+				    </div>
+				</div>
+			</f:form>
+			<div class="col-md-12 ">${status }</div>
+			<div class="col-md-12 ">
+				<h3 class="page-header">Thông tin cá nhân</h3>
+			</div>
+			<f:form commandName="objHv" method="POST" class="form-horizontal" action="changeinfo">
+				<div class="form-group">
+						<label for="hoTen" class="col-md-2 control-label">Họ tên</label>
+						<div class="col-md-6">
+						<f:input class="form-control" path="id" type="hidden"/>	
+							<f:input class="form-control" path="hoTen" />
+						</div>							
 				</div>
 				<div class="form-group">
 					<label for="diaChi" class="col-md-2 control-label">Địa chỉ</label>
@@ -136,6 +146,21 @@
 			      		<input type="submit" class="btn btn-default" value="Cập nhật">
 				    </div>
 				</div>
-	</f:form>
+			</f:form>
+		</div>
+		<!-- -----------------------------END sectionA-------------------------------- -->
+		
+		<!-- -----------------------------sectionB-------------------------------- -->
+		
+		 <div id="sectionB" class="tab-pane fade">
+		 
+		 	
+		 
+		 </div>
+		 
+		 <!-- -----------------------------END sectionB-------------------------------- -->
+	</div>
+		
+		
 	</jsp:attribute>
 </t:user_layout>
