@@ -163,7 +163,7 @@
 											.getAttribute("acc");
 							%>
 							<li>
-								<a href="#">
+								<a href="${pageContext.request.contextPath}/account/profile">
 									<%out.print("Xin chào " + log.getName());%>
 								</a>
 							</li>
