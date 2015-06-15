@@ -6,6 +6,7 @@ import pojo.HocVien;
 import pojo.NhanVien;
 import pojo.TaiKhoan;
 import dao.TaiKhoanDAO;
+import model.AccountUpdateModel;
 import model.SessionUserModel;
 import model.TaiKhoanManagerModel;
 
@@ -37,5 +38,9 @@ public class TaiKhoanBUS {
 		}
 
 		return sessUser;
+	}
+
+	public boolean updatePwd(AccountUpdateModel pwd) {
+		return new TaiKhoanDAO().updatePwd(pwd);
 	}
 }

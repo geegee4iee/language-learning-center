@@ -8,6 +8,7 @@ import pojo.QuyenHan;
 import pojo.TaiKhoan;
 import utils.ConnectionFactory;
 import utils.EncryptPassword;
+import model.AccountUpdateModel;
 import model.TaiKhoanManagerModel;
 
 public class TaiKhoanDAO {
@@ -59,5 +60,25 @@ public class TaiKhoanDAO {
 		}
 
 		return tk;
+	}
+
+	public boolean updatePwd(AccountUpdateModel pwd) {
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+
+		try {
+			sess.getTransaction().begin();
+			TaiKhoan tk = (TaiKhoan) sess.load(TaiKhoan.class, pwd.getId());
+			tk.setMatKhau(EncryptPassword.md5(pwd.getPasswordNew()));
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sess.getTransaction().rollback();
+
+			return false;
+		}
+
+		return true;
 	}
 }

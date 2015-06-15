@@ -186,7 +186,7 @@ public class TaiKhoanController {
 		if (session.getAttribute("acc") != null) {
 			acc = (SessionUserModel) session.getAttribute("acc");
 		} else {
-			return "redirect:/home/index";
+			return "redirect:/account/login";
 		}
 
 		HocVien hv = new HocVienBUS().getHocVien(acc.getId());
@@ -198,5 +198,25 @@ public class TaiKhoanController {
 		m.addAttribute("objPwd", pwd);
 
 		return "profile";
+	}
+
+	@RequestMapping(value = "/changepwd", method = RequestMethod.POST)
+	public String changePwd(@ModelAttribute("objPwd") AccountUpdateModel pwd,
+			ModelMap m, HttpSession session) {
+		TaiKhoan tk = new TaiKhoanBUS().get(pwd.getId());
+		if (EncryptPassword.md5(pwd.getPassword()).equals(tk.getMatKhau()) == false) {
+			HocVien hv = new HocVienBUS().getHocVien(pwd.getId());
+
+			// Add HocVien model and AccountUpdateModel to view
+			m.addAttribute("objHv", hv);
+			m.addAttribute("objPwd", pwd);
+			m.addAttribute("status", "Mật khẩu không đúng");
+
+			return "profile";
+		} else {
+			new TaiKhoanBUS().updatePwd(pwd);
+		}
+
+		return "redirect:/account/profile";
 	}
 }
