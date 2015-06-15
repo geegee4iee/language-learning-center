@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.AccountUpdateModel;
 import model.LoginModel;
 import model.RegisterModel;
 import model.SessionUserModel;
@@ -25,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import bus.ChuDeBUS;
+import bus.HocVienBUS;
+import bus.TaiKhoanBUS;
 import pojo.ChuDe;
 import pojo.HocVien;
 import pojo.QuyenHan;
@@ -117,7 +120,8 @@ public class TaiKhoanController {
 					.createQuery("from TaiKhoan tk where tk.id=:id and tk.matKhau=:password and quyenHan=:quyenHan");
 			query.setString("id", login.getId());
 			query.setParameter("quyenHan", new QuyenHan(1, ""));
-			query.setString("password",EncryptPassword.md5(login.getPassword()));
+			query.setString("password",
+					EncryptPassword.md5(login.getPassword()));
 
 			if (query.uniqueResult() != null) {
 				TaiKhoan tk = (TaiKhoan) query.uniqueResult();
@@ -174,4 +178,26 @@ public class TaiKhoanController {
 		return "redirect:/home/index";
 	}
 
+	// Return view profile
+	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	public String viewProfile(HttpSession session, ModelMap m) {
+		SessionUserModel acc = new SessionUserModel();
+
+		// Check whether user logged in
+		if (session.getAttribute("acc") != null) {
+			acc = (SessionUserModel) session.getAttribute("acc");
+		} else {
+			return "redirect:/home/index";
+		}
+
+		HocVien hv = new HocVienBUS().getHocVien(acc.getId());
+		AccountUpdateModel pwd = new AccountUpdateModel();
+		pwd.setId(acc.getId());
+
+		// Add HocVien model and AccountUpdateModel to view
+		m.addAttribute("objHv", hv);
+		m.addAttribute("objPwd", pwd);
+
+		return "profile";
+	}
 }
