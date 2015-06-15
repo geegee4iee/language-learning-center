@@ -219,4 +219,22 @@ public class TaiKhoanController {
 
 		return "redirect:/account/profile";
 	}
+	
+	@RequestMapping(value="/changeinfo",method = RequestMethod.POST)
+	public String changeInfo(@ModelAttribute("objHv")HocVien hv, ModelMap m){
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+		
+		try {
+			sess.getTransaction().begin();
+			sess.update(hv);
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sess.getTransaction().rollback();
+		}
+		
+		return "redirect:/account/profile";
+	}
 }
