@@ -134,7 +134,7 @@
 		${user.ngaySinh }
 		${date }
 		</div>
-</jsp:attribute>
+	</jsp:attribute>
 
 	<jsp:attribute name="css">
 		<link
