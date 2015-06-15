@@ -5,13 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateFormat {
-	public final String FORMAT_SV = "yyyy-MM-dd";
-	public final String FORMAT_1 = "dd/MM/yyyy";
-	public final String FORMAT_2 = "MM/dd/yyyy";
-	public final String FORMAT_3 = "MM/dd/yyyy hh:mm aa";
-	public final String FORMAT_4 = "MM/dd/yyyy HH:mm";
-	public final String FM_MY = "MM yyyy";
-	public final String FORMAT_5 = "yyyy-MM-dd HH:mm:ss.SSS";
+	public static final String FORMAT_SV = "yyyy-MM-dd";
+	public static final String FORMAT_1 = "dd/MM/yyyy";
+	public static final String FORMAT_2 = "MM/dd/yyyy";
+	public static final String FORMAT_3 = "MM/dd/yyyy hh:mm aa";
+	public static final String FORMAT_4 = "MM/dd/yyyy HH:mm";
+	public static final String FM_MY = "MM yyyy";
+	public static final String FORMAT_5 = "yyyy-MM-dd HH:mm:ss.SSS";
 
 	public String formatDate(String dateOld) {
 		String dateNew;
@@ -43,6 +43,15 @@ public class DateFormat {
 		}
 
 		return date;
+	}
+
+	public String getDateString(Date date, String format) {
+		String dateStr;
+		SimpleDateFormat sdf = new SimpleDateFormat(format);
+
+		dateStr = sdf.format(date);
+
+		return dateStr;
 	}
 
 	public String formatDateTime(Date date) {

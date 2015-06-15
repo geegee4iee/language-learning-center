@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.AccountUpdateModel;
+import model.HocVienInfoModel;
 import model.LoginModel;
 import model.RegisterModel;
 import model.SessionUserModel;
@@ -190,11 +191,12 @@ public class TaiKhoanController {
 		}
 
 		HocVien hv = new HocVienBUS().getHocVien(acc.getId());
+		HocVienInfoModel hvModel = new HocVienBUS().toHocVienInfo(hv);
 		AccountUpdateModel pwd = new AccountUpdateModel();
 		pwd.setId(acc.getId());
 
 		// Add HocVien model and AccountUpdateModel to view
-		m.addAttribute("objHv", hv);
+		m.addAttribute("objHv", hvModel);
 		m.addAttribute("objPwd", pwd);
 
 		return "profile";
@@ -219,22 +221,16 @@ public class TaiKhoanController {
 
 		return "redirect:/account/profile";
 	}
-	
-	@RequestMapping(value="/changeinfo",method = RequestMethod.POST)
-	public String changeInfo(@ModelAttribute("objHv")HocVien hv, ModelMap m){
-		SessionFactory fac = ConnectionFactory.getSessionFactory();
-		Session sess = fac.openSession();
-		
-		try {
-			sess.getTransaction().begin();
-			sess.update(hv);
-			sess.getTransaction().commit();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			sess.getTransaction().rollback();
+
+	@RequestMapping(value = "/changeinfo", method = RequestMethod.POST)
+	public String changeInfo(@ModelAttribute("objHv") HocVienInfoModel hvModel,
+			ModelMap m) {
+		if (new HocVienBUS().updateInfo(hvModel) == true) {
+
+		} else {
+
 		}
-		
+
 		return "redirect:/account/profile";
 	}
 }

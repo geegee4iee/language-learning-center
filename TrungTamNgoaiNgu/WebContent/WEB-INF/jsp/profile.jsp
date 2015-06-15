@@ -53,9 +53,7 @@
 			
 		</script>
 		<script>
-			$('.datepicker').datepicker({
-				format: 'yyyy-mm-dd'
-				});
+			$('.datepicker').datepicker();
 
 		</script>
 	</jsp:attribute>
