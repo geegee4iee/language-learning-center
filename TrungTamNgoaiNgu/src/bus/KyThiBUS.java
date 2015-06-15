@@ -66,6 +66,10 @@ public class KyThiBUS {
 		}
 	}
 
+	public List<KyThi> getRegByHocVien(int idHocVien) {
+		return new KyThiDAO().getRegByHocVien(idHocVien);
+	}
+
 	public boolean addDangKy(DangKyThiId id) {
 		return new KyThiDAO().addDangKy(id);
 	}

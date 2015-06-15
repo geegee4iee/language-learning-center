@@ -14,6 +14,7 @@ import pojo.DangKyKhoaHoc;
 import pojo.DangKyKhoaHocId;
 import pojo.DangKyThi;
 import pojo.DangKyThiId;
+import pojo.KhoaHoc;
 import pojo.KyThi;
 import utils.ConnectionFactory;
 
@@ -69,7 +70,7 @@ public class KyThiDAO {
 
 		return lst;
 	}
-	
+
 	public List<KyThi> getStarted(int quantity) {
 		List<KyThi> lst = new ArrayList<KyThi>();
 		SessionFactory fac = ConnectionFactory.getSessionFactory();
@@ -234,5 +235,30 @@ public class KyThiDAO {
 		}
 
 		return true;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<KyThi> getRegByHocVien(int idHocVien) {
+		List<KyThi> lstKt = new ArrayList<KyThi>();
+		List<DangKyThi> lstDk = new ArrayList<DangKyThi>();
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+
+		try {
+			sess.getTransaction().begin();
+			Query query = sess
+					.createQuery("from DangKyThi where idHocVien=:idHocVien and daDangKy=1");
+			query.setInteger("idHocVien", idHocVien);
+			lstDk = query.list();
+			for (DangKyThi dk : lstDk) {
+				lstKt.add(dk.getKyThi());
+			}
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return lstKt;
 	}
 }

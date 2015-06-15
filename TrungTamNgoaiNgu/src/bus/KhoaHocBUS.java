@@ -70,6 +70,10 @@ public class KhoaHocBUS {
 		return lstCurKh;
 	}
 
+	public List<KhoaHoc> getRegByHocVien(int idHocVien) {
+		return new KhoaHocDAO().getRegByHocVien(idHocVien);
+	}
+
 	public List<KhoaHoc> getAll(int chudeId) {
 		return new KhoaHocDAO().getAll(chudeId);
 	}

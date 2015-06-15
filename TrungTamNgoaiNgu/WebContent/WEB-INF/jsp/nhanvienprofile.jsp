@@ -51,7 +51,7 @@
                 		</form>
                 		<hr>
                 		<f:form commandName="staffAcc" method="POST"
-							action="${pageContext.request.contextPath}/profile/doimatkhau"
+							action="${pageContext.request.contextPath}/profile/changepwd"
 							id="changePwd">
 						<div class="form-group">
 							<label>Tên tài khoản</label>
@@ -71,6 +71,9 @@
 							<input class="form-control" type="password" name="passwordNewRepeat" />
 						</div>
 						<input type="submit" class="btn btn-default" value="Đổi mật khẩu">
+						<div class="form-group">
+							${status }
+						</div>
 					</f:form>
                 	</div>
                 </div>

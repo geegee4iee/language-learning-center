@@ -36,7 +36,7 @@ public class KhoaHocDAO {
 
 		return kh;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<KhoaHoc> getAll(int chudeId) {
 		List<KhoaHoc> lst = new ArrayList<KhoaHoc>();
@@ -110,23 +110,23 @@ public class KhoaHocDAO {
 
 		return true;
 	}
-	
-	public boolean add(KhoaHocManagerModel khM){
+
+	public boolean add(KhoaHocManagerModel khM) {
 		KhoaHoc kh = new KhoaHoc();
 		ChuDe cd = new ChuDe();
 		kh.setTen(khM.getTen());
 		kh.setNgayBatDau(new DateFormat().getDate(khM.getNgayBatDau()));
 		kh.setNgayKetThuc(new DateFormat().getDate(khM.getNgayKetThuc()));
 		kh.setKhoa(khM.getKhoa());
-		
+
 		SessionFactory fac = ConnectionFactory.getSessionFactory();
 		Session sess = fac.openSession();
-		
+
 		try {
 			sess.getTransaction().begin();
-			cd = (ChuDe)sess.load(ChuDe.class,khM.getChuDe());
+			cd = (ChuDe) sess.load(ChuDe.class, khM.getChuDe());
 			kh.setChuDe(cd);
-			
+
 			sess.save(kh);
 			sess.getTransaction().commit();
 		} catch (Exception e) {
@@ -135,7 +135,32 @@ public class KhoaHocDAO {
 			sess.getTransaction().rollback();
 			return false;
 		}
-		
+
 		return true;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<KhoaHoc> getRegByHocVien(int idHocVien) {
+		List<KhoaHoc> lstKh = new ArrayList<KhoaHoc>();
+		List<DangKyKhoaHoc> lstDk = new ArrayList<DangKyKhoaHoc>();
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+
+		try {
+			sess.getTransaction().begin();
+			Query query = sess
+					.createQuery("from DangKyKhoaHoc where idHocVien=:idHocVien and daDangKy=1");
+			query.setInteger("idHocVien", idHocVien);
+			lstDk = query.list();
+			for (DangKyKhoaHoc dk : lstDk) {
+				lstKh.add(dk.getKhoaHoc());
+			}
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return lstKh;
 	}
 }

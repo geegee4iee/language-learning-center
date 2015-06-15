@@ -48,15 +48,9 @@
 						chào ${sessionScope.accStaff.name }
 				</a>
 					<ul class="dropdown-menu dropdown-user">
-						<li>
-							<form method="POST"
-								action="${pageContext.request.contextPath }/profile/nhanvien">
-								<input name="id" type="submit" id="submit-button-profile"
-									style="display: none" value="${sessionScope.accStaff.id }" />
-								<a href="#" onclick="$('#submit-button-profile').click();"><i
-									class="fa fa-sign-out fa-fw"></i> Thông tin cá nhân</a>
-							</form>
-						</li>
+						<li><a
+							href="${pageContext.request.contextPath }/profile/nhanvien"><i
+								class="fa fa-sign-out fa-fw"></i> Thông tin cá nhân</a></li>
 						<li class="divider"></li>
 						<li>
 							<form method="POST"

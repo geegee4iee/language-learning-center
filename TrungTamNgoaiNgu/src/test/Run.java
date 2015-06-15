@@ -26,23 +26,10 @@ public class Run {
 		 * lh.setThoiGianHoc("05/07/2015 7:28 PM"); LichHocBUS bus = new
 		 * LichHocBUS(); bus.add(lh);
 		 */
-		List<KyThi> lstKy = new KyThiDAO().getStarted();
-
-		for (KyThi kt : lstKy) {
-			System.out.println(kt.getTen());
-		}
+		List<KyThi> kh = new KyThiBUS().getRegByHocVien(1);
 		
-		List<HighScoreModel> lstHs = new KyThiBUS().getHighScore();
-		
-		for(HighScoreModel m:lstHs){
-			System.out.println(m.getDiem());
-		}
-
-		System.out.println("Chào bạn");
-		
-		List<PhanHoiHocVien> lstPh = new PhanHoiBUS().getAllNew(5);
-		for(PhanHoiHocVien ph:lstPh){
-			System.out.println(ph.getNoiDung());
+		for(KyThi k:kh){
+			System.out.println(k.getTen());
 		}
 	}
 
