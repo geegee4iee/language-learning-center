@@ -6,8 +6,12 @@
 <%@ attribute name="css" fragment="true" required="false"%>
 <%@ attribute name="js" fragment="true" required="false"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="i18n.ttan" />
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${language}">
   <head>
     <!--=============================================== 
     Template Design By WpFreeware Team.
@@ -65,65 +69,12 @@
 	<jsp:invoke fragment="css"></jsp:invoke>
 </head>
 <body>
-	<%-- <nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Trang chủ</a>
-			</div>
-			<p class="navbar-text">
-				<a href="${pageContext.request.contextPath}/account/login"
-					class="navbar-link">Đăng nhập</a>
-			</p>
-			<p class="navbar-text">
-				<a href="${pageContext.request.contextPath}/account/register"
-					class="navbar-link">Đăng ký</a>
-			</p>
-			<p class="navbar-text">
-				<a href="${pageContext.request.contextPath}/account/logout"
-					class="navbar-link">Thoát</a>
-			</p>
-			<p class="navbar-text">
-				<a href="${pageContext.request.contextPath}/khoahoc/list"
-					class="navbar-link">Khóa học</a>
-			</p>
-			<p class="navbar-text">
-				<a href="${pageContext.request.contextPath}/kythi/list"
-					class="navbar-link">Chương trình thi</a>
-			</p>
-			<p class="navbar-text">
-				<%
-					if (session.getAttribute("acc") != null) {
-						SessionUserModel log = (SessionUserModel) session.getAttribute("acc");
-						out.print("Xin chào " + log.getName());
-					}
-				%>
-			</p>
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
-				<form class="navbar-form navbar-left " role="search">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
-					</div>
-					<button type="submit" class="btn btn-default">Tìm kiếm</button>
-				</form>
-			</div>
-			<!-- /.navbar-collapse -->
-		</div>
-		<!-- /.container-fluid -->
-	</nav> --%>
+	
 	<!-- SCROLL TOP BUTTON -->
     <a class="scrollToTop" href="#"></a>
     <!-- END SCROLL TOP BUTTON -->
 
-    <!--=========== BEGIN HEADER SECTION ================-->
+     <!--=========== BEGIN HEADER SECTION ================-->
     <header id="header">
       <!-- BEGIN MENU -->
       <div class="menu_area">
@@ -147,9 +98,9 @@
             <div id="navbar" class="navbar-collapse collapse navbar-left">
 			
               <ul id="top-menu" class="nav navbar-nav  main-nav">
-                <li class="active"><a href="${pageContext.request.contextPath }/home/index">TRANG CHỦ</a></li>
-                <li><a href="${pageContext.request.contextPath }/khoahoc/danhsach">KHÓA HỌC</a></li>
-                <li><a href="${pageContext.request.contextPath }/kythi/danhsach">KỲ THI</a></li>
+                <li class="active"><a href="${pageContext.request.contextPath }/home/index"><fmt:message key="menu.label.home" /></a></li>
+                <li><a href="${pageContext.request.contextPath }/khoahoc/danhsach"><fmt:message key="menu.label.course" /></a></li>
+                <li><a href="${pageContext.request.contextPath }/kythi/danhsach"><fmt:message key="menu.label.exam" /></a></li>
               </ul>
            
             </div><!--/.nav-collapse -->
@@ -164,12 +115,12 @@
 							%>
 							<li>
 								<a href="${pageContext.request.contextPath}/account/profile">
-									<%out.print("Xin chào " + log.getName());%>
+									<fmt:message key="menu.label.hello" /><%out.print(log.getName());%>
 								</a>
 							</li>
 							<li>
 								<a href="${pageContext.request.contextPath}/account/logout">
-									THOÁT
+									<fmt:message key="menu.label.logout" />
 								</a>
 							</li>		
 									
@@ -177,26 +128,32 @@
 								}else{
 							%>
 							
-							<li><a href="${pageContext.request.contextPath}/account/register">ĐĂNG KÝ</a></li>
+							<li><a href="${pageContext.request.contextPath}/account/register"><fmt:message key="menu.label.register" /></a></li>
 
-							<li><a href="${pageContext.request.contextPath}/account/login">ĐĂNG NHẬP</a></li>
+							<li><a href="${pageContext.request.contextPath}/account/login"><fmt:message key="menu.label.login" /></a></li>
 							<%} %>
               </ul>
            
             </div><!--/.nav-collapse -->
             
-			<form class="navbar-form navbar-right " role="search">
+			<form class="navbar-form navbar-right" action="${pageContext.request.contextPath}/khoahoc/timkiem" method="get" role="search">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Search">
+					<input type="text" class="form-control" name="content" placeholder="Search">
 				</div>
-				<button type="submit" class="btn btn-default">Tìm kiếm</button>
+				<button type="submit" class="btn btn-default"><fmt:message key="menu.button.search" /></button>
 			</form>
+			<form class="navbar-form navbar-right ">
+	            <select id="language" name="language" class="form-control" onchange="submit()">
+	                <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
+	                <option value="vn" ${language == 'vn' ? 'selected' : ''}>Việt Nam</option>
+	            </select>
+        	</form>
           </div>     
         </nav>  
       </div>
       <!-- END MENU -->    
     </header>
-    <!--=========== END HEADER SECTION ================--> 
+    <!--=========== END HEADER SECTION ================-->  
 
     
     <!--=========== BEGIN COURSE BANNER SECTION ================-->
@@ -213,7 +170,7 @@
               <!-- start single sidebar -->
 				
               <div class="single_sidebar">
-                <h2>Category <span class="fa fa-angle-double-right"></span></h2>
+                <h2><fmt:message key="menu.label.category" /> <span class="fa fa-angle-double-right"></span></h2>
 				<ul class="list-group">
 					<c:forEach items="${lstCd }" var="item">
 						<li class="list-group-item"><a href="${pageContext.request.contextPath }/khoahoc/danhsach/${item.id }">${item.ten }</a></li>
@@ -262,13 +219,13 @@
           <div class="row">
             <div class="col-ld-3  col-md-3 col-sm-3">
               <div class="single_footer_widget">
-                <h3>About Us</h3>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <h3><fmt:message key="footer.title.aboutus" /></h3>
+                <p><fmt:message key="footer.content.aboutus" /></p>
               </div>
             </div>
             <div class="col-ld-3  col-md-3 col-sm-3">
               <div class="single_footer_widget">
-                <h3>Community</h3>
+                <h3><fmt:message key="footer.label.community" /></h3>
                 <ul class="footer_widget_nav">
                   <li><a href="#">Our Tutors</a></li>
                   <li><a href="#">Our Students</a></li>
@@ -280,7 +237,7 @@
             </div>
             <div class="col-ld-3  col-md-3 col-sm-3">
               <div class="single_footer_widget">
-                <h3>Others</h3>
+                <h3><fmt:message key="footer.label.others" /></h3>
                 <ul class="footer_widget_nav">
                   <li><a href="#">Link 1</a></li>
                   <li><a href="#">Link 2</a></li>
@@ -292,7 +249,7 @@
             </div>
             <div class="col-ld-3  col-md-3 col-sm-3">
               <div class="single_footer_widget">
-                <h3>Social Links</h3>
+                <h3><fmt:message key="footer.label.SocialLinks" /></h3>
                 <ul class="footer_social">
                   <li><a data-toggle="tooltip" data-placement="top" title="Facebook" class="soc_tooltip" href="#"><i class="fa fa-facebook"></i></a></li>
                   <li><a data-toggle="tooltip" data-placement="top" title="Twitter" class="soc_tooltip"  href="#"><i class="fa fa-twitter"></i></a></li>
