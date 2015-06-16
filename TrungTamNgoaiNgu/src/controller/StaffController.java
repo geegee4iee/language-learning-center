@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException;
 
+import dao.KhoaHocDAO;
 import pojo.ChuDe;
 import pojo.KhoaHoc;
 import pojo.LichHoc;
@@ -111,6 +112,16 @@ public class StaffController {
 
 		m.addAttribute("status", status);
 		return "redirect:/nhanvien/editcourse/" + kh.getId();
+	}
+
+	@RequestMapping(value = "/removecourse", method = RequestMethod.POST)
+	public String removeCourse(@RequestParam("id") int idKhoaHoc,
+			@RequestParam("idChuDe") int idChuDe) {
+		if (new KhoaHocDAO().remove(idKhoaHoc) == true) {
+		} else {
+		}
+
+		return "redirect:/nhanvien/courses/" + idChuDe;
 	}
 
 	@RequestMapping(value = "/schedule/{id}", method = RequestMethod.GET)

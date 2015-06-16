@@ -28,13 +28,14 @@
                 </div>
                 <!-- /.row -->
                 <div class="row">
-                	<div class="col-md-10">
+                	<div class="col-md-12">
                 		<a class="btn btn-default"
 							href="${pageContext.request.contextPath}/nhanvien/addcourse/${subject}">Thêm khóa học</a>
                 		<table class="table">
                 		<thead>
                 			<tr>
                 				<th>Tên chuyên đề</th>
+								<th></th>
 								<th></th>
 								<th></th>
 								<th></th>
@@ -54,6 +55,13 @@
 								</td>
 								<td>
 								<a href="${pageContext.request.contextPath }/nhanvien/thongbao/${item.id}" class="btn btn-default" >Thông báo</a>
+								</td>
+								<td>
+									<form action="${pageContext.request.contextPath }/nhanvien/removecourse" method="post">
+										<input name="id" value="${item.id }" type="hidden"/>
+										<input name="idChuDe" value="${item.chuDe.id }" type="hidden" />
+										<button class="btn btn-default" onClick="return confirm('Bạn có chắc chắn muốn xóa')">Xóa</button>
+									</form>
 								</td>
 							</tr>               		
                 		</c:forEach>
