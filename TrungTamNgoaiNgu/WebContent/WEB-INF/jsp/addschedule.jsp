@@ -84,7 +84,10 @@
 			src="${pageContext.request.contextPath}/resources/js/bootstrap-datetimepicker.min.js"></script>
 		<script>
 			$(function() {
-				$('.datetimepicker').datetimepicker();
+				$('.datetimepicker').datetimepicker({
+					format: 'MM/DD/YYYY hh:mm A'
+					
+					});
 			});
 			
 			 //Validator Jquery
