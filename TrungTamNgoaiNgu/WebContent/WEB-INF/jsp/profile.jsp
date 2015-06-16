@@ -60,7 +60,9 @@
 	<jsp:attribute name="content">
 		<ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#sectionA">Tài khoản</a></li>
-        <li><a data-toggle="tab" href="#sectionB">Section B</a></li>
+        <li><a data-toggle="tab" href="#sectionB">Khóa học</a></li>
+        <li><a data-toggle="tab" href="#sectionC">Kỳ thi</a></li>
+        <li><a data-toggle="tab" href="#sectionD">Phản hồi</a></li>
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown <b class="caret"></b></a>
             <ul class="dropdown-menu">
@@ -153,9 +155,103 @@
 		<!-- -----------------------------sectionB-------------------------------- -->
 		
 		 <div id="sectionB" class="tab-pane fade">
+		 	<div class="col-md-12 ">
+				<h3 class="page-header">Thông tin khóa học</h3>
+			</div>
+		 	<table class="table table-hover">
+		 		<thead>
+			 		<tr>
+			 			<th>Tên khóa học</th>
+			 			<th>Ngày bắt đầu</th>
+			 			<th>Ngày kết thúc</th>
+			 			<th>Lịch học</th>
+			 			<th>Thông báo</th>
+			 		</tr>
+		 		</thead>
+		 		<tbody>
+		 			<c:forEach items="${lstKh }" var="item">
+		 				<tr>
+			 				<td>${item.ten }</td>
+			 				<td>${item.ngayBatDau }</td>
+			 				<td>${item.ngayKetThuc }</td>
+			 				<td>
+			 					<a href="${pageContext.request.contextPath }/khoahoc/lichhoc/${item.id}" class="btn btn-default"> Chi tiết</a>
+			 				</td>
+			 				<td>
+			 					<a href="" class="btn btn-default"> Xem</a>
+			 				</td>
+		 				</tr>
+		 			</c:forEach>
+		 			
+		 		</tbody>
+		 		
+		 	</table>
 		 
-		 	
+		 </div>
 		 
+		 <!-- -----------------------------END sectionB-------------------------------- -->
+		 
+		 <!-- -----------------------------sectionC-------------------------------- -->
+		
+		 <div id="sectionC" class="tab-pane fade">
+		 
+		 	<div class="col-md-12 ">
+				<h3 class="page-header">Thông tin kỳ thi</h3>
+			</div>
+		 	<table class="table table-hover">
+		 		<thead>
+			 		<tr>
+			 			<th>Tên kỳ thi</th>
+			 			<th>Thời gian thi</th>
+			 			<th>Địa điểm</th>
+			 			
+			 		</tr>
+		 		</thead>
+		 		<tbody>
+		 			<c:forEach items="${lstKt }" var="item">
+		 				<tr>
+			 				<td>${item.ten }</td>
+			 				<td>${item.thoiGianThi }</td>
+			 				<td>${item.diaDiem }</td>
+		 				</tr>
+		 			</c:forEach>
+		 			
+		 		</tbody>
+		 		
+		 	</table>
+		 
+		 </div>
+		 
+		 <!-- -----------------------------END sectionB-------------------------------- -->
+		 
+		  <!-- -----------------------------sectionC-------------------------------- -->
+		
+		 <div id="sectionD" class="tab-pane fade">
+		 
+		 	<div class="col-md-12 ">
+				<h3 class="page-header">Phản hồi</h3>
+			</div>
+			<form class="form-horizontal" id="frmFeedback" method="post" action="feedback">
+				<div class="form-group">
+					 <label for="noiDung" class="col-md-2 control-label">Nội dung</label>
+					<div class="col-md-10">
+						<input type="hidden" name="id" value="${objHv.id }"/>
+						<textarea class="form-control" name="noiDung" id="noiDung">
+						</textarea>
+					</div>
+				</div>	
+				<div class="form-group">
+				    <div class="col-md-offset-2 col-md-10">
+			      		<button type="submit" class="btn btn-default">Gửi</button>
+				    </div>
+			  	</div>
+			  	<div class="form-group">
+				    <div class="col-md-offset-2 col-md-10">
+			      		<h4>${param.statusFeedback }</h4>
+				    </div>
+			  	</div>
+			</form>
+			
 		 </div>
 		 
 		 <!-- -----------------------------END sectionB-------------------------------- -->
