@@ -87,9 +87,18 @@
 									</form>
 								</td>
 								<td>
-									<a href="${pageContext.request.contextPath }/quantri/profile/${item.id}" class="btn btn-default">Sửa thông tin</a>
+									<a
+										href="${pageContext.request.contextPath }/quantri/profile/${item.id}"
+										class="btn btn-default">Sửa thông tin</a>
 								</td>
 								<td>
+									<form
+											action="${pageContext.request.contextPath }/quantri/xoanhanvien"
+											method="post">
+										<input type="hidden" name="id" value="${item.id }" />
+										<button class="btn btn-default"
+												onClick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</button>
+									</form>
 								</td>
 							</tr>               		
                 		</c:forEach>

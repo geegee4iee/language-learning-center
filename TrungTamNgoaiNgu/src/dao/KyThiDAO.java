@@ -3,6 +3,7 @@ package dao;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import model.HighScoreModel;
 import model.KythiManagerModel;
@@ -32,6 +33,31 @@ public class KyThiDAO {
 		try {
 			sess.getTransaction().begin();
 			sess.save(kt);
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sess.getTransaction().rollback();
+
+			return false;
+		}
+
+		return true;
+	}
+
+	public boolean update(KythiManagerModel model) {
+
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+
+		try {
+			sess.getTransaction().begin();
+			KyThi kt = (KyThi) sess.load(KyThi.class, model.getId());
+			kt.setTen(model.getTen());
+			kt.setDiaDiem(model.getDiaDiem());
+			kt.setThoiGianThi(new DateFormat().getDateTime(model
+					.getThoiGianThi()));
+			sess.update(kt);
 			sess.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -230,6 +256,53 @@ public class KyThiDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			sess.getTransaction().rollback();
+			return false;
+		}
+
+		return true;
+	}
+
+	// Remove register's examination take part in
+	public boolean removeReg(DangKyThiId dkId) {
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+
+		try {
+			sess.getTransaction().begin();
+			DangKyThi dk = (DangKyThi) sess.load(DangKyThi.class, dkId);
+			sess.delete(dk);
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sess.getTransaction().rollback();
+
+			return false;
+		}
+
+		return true;
+	}
+
+	public boolean remove(int idKyThi) {
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+
+		try {
+			sess.getTransaction().begin();
+			KyThi kt = (KyThi) sess.get(KyThi.class, idKyThi);
+			Set<DangKyThi> lstDk = kt.getDangKyThis();
+
+			for (DangKyThi dk : lstDk) {
+				sess.delete(dk);
+			}
+
+			sess.delete(kt);
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sess.getTransaction().rollback();
+
 			return false;
 		}
 

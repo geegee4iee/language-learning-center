@@ -62,6 +62,18 @@
 												class="btn btn-primary">Đăng ký</button>
 									</form>
 								</td>
+								<td>
+									<form
+											action="${pageContext.request.contextPath }/quantri/xoadangkythi"
+											method="post">
+										<input type="hidden" name="idHocVien"
+												value="${item.id.idHocVien }" />
+										<input type="hidden" name="idKyThi"
+												value="${item.id.idKyThi }" />
+										<button class="btn btn-default"
+												onClick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</button>
+									</form>
+								</td>
 							</tr>               		
                 		</c:forEach>
                 	</table>

@@ -63,4 +63,25 @@ public class DangKyKhoaHocDAO {
 
 		return true;
 	}
+
+	public boolean removeReg(DangKyKhoaHocId dkId) {
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+
+		try {
+			sess.getTransaction().begin();
+			DangKyKhoaHoc dk = (DangKyKhoaHoc) sess.load(DangKyKhoaHoc.class,
+					dkId);
+			sess.delete(dk);
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sess.getTransaction().rollback();
+
+			return false;
+		}
+
+		return true;
+	}
 }

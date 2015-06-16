@@ -12,8 +12,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import pojo.ChuDe;
+import pojo.DangKyKhoaHoc;
 import pojo.KhoaHoc;
+import pojo.LichHoc;
 import pojo.NhanVien;
+import pojo.ThongBaoKhoaHoc;
 import utils.ConnectionFactory;
 
 public class ChuDeDAO {
@@ -162,19 +165,38 @@ public class ChuDeDAO {
 		SessionFactory fac = ConnectionFactory.getSessionFactory();
 		Session sess = fac.openSession();
 
-		sess.getTransaction().begin();
-		ChuDe cd = (ChuDe) sess.get(ChuDe.class, idChuyenDe);
-		if (cd.getNhanVien() == null) {
+		try {
+			sess.getTransaction().begin();
+			ChuDe cd = (ChuDe) sess.get(ChuDe.class, idChuyenDe);
 			Set<KhoaHoc> lstKh = cd.getKhoaHocs();
-			ChuDeDAO dao = new ChuDeDAO();
+
 			for (KhoaHoc kh : lstKh) {
-				dao.remove(kh.getId());
+				Set<DangKyKhoaHoc> lstDk = kh.getDangKyKhoaHocs();
+				Set<LichHoc> lstLh = kh.getLichHocs();
+				Set<ThongBaoKhoaHoc> lstTb = kh.getThongBaoKhoaHocs();
+
+				for (DangKyKhoaHoc dk : lstDk) {
+					sess.delete(dk);
+				}
+
+				for (LichHoc lh : lstLh) {
+					sess.delete(lh);
+				}
+
+				for (ThongBaoKhoaHoc tb : lstTb) {
+					sess.delete(tb);
+				}
+
+				sess.delete(kh);
 			}
 
 			sess.delete(cd);
 			sess.getTransaction().commit();
-		} else {
-			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sess.getTransaction().rollback();
+
 			return false;
 		}
 

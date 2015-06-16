@@ -10,16 +10,20 @@ import dao.KyThiDAO;
 import pojo.DangKyThi;
 import pojo.DangKyThiId;
 import pojo.KyThi;
+import utils.DateFormat;
 
 public class KyThiBUS {
 
-	
 	public List<KyThi> getAll() {
 		return new KyThiDAO().getAll();
 	}
 
 	public boolean add(KythiManagerModel model) {
 		return new KyThiDAO().add(model);
+	}
+
+	public boolean update(KythiManagerModel model) {
+		return new KyThiDAO().update(model);
 	}
 
 	public List<HighScoreModel> getHighScore() {
@@ -90,5 +94,25 @@ public class KyThiBUS {
 
 	public KyThi get(int idKyThi) {
 		return new KyThiDAO().get(idKyThi);
+	}
+
+	public KythiManagerModel getKyThiModel(int idKyThi) {
+		KyThi kt = get(idKyThi);
+		KythiManagerModel model = new KythiManagerModel();
+		model.setId(kt.getId());
+		model.setDiaDiem(kt.getDiaDiem());
+		model.setTen(kt.getTen());
+		model.setThoiGianThi(new DateFormat().getDateString(
+				kt.getThoiGianThi(), DateFormat.FORMAT_3));
+
+		return model;
+	}
+
+	public boolean removeReg(DangKyThiId dkId) {
+		return new KyThiDAO().removeReg(dkId);
+	}
+
+	public boolean remove(int idKyThi) {
+		return new KyThiDAO().remove(idKyThi);
 	}
 }

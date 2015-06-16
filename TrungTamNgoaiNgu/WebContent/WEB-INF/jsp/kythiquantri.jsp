@@ -30,7 +30,8 @@
                 <!-- /.row -->
                 <div class="row">
                 	<div class="col-md-12">
-                	<a class="btn btn-default" href="${pageContext.request.contextPath }/quantri/themkythi">Thêm kỳ thi</a>
+                	<a class="btn btn-default"
+							href="${pageContext.request.contextPath }/quantri/themkythi">Thêm kỳ thi</a>
                 	<h3>Kỳ thi đã diễn ra</h3>
                 		<table class="table">
                 		<thead>
@@ -49,7 +50,8 @@
 									${item.id }
 								</td>
 								<td>
-									<a href="${pageContext.request.contextPath }/quantri/kythi/${item.id}">
+									<a
+										href="${pageContext.request.contextPath }/quantri/kythi/${item.id}">
 										${item.ten }
 									</a>
 								</td>
@@ -63,7 +65,17 @@
 								<td>
 									${item.thoiGianThi }
 								</td>
-								<td>	
+								<td>
+									<form
+											action="${pageContext.request.contextPath }/quantri/xoakythi"
+											method="post">
+										<input type="hidden" name="id" value="${item.id }" />
+										<button class="btn btn-default"
+												onClick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</button>
+									</form>
+								</td>
+								<td>
+									<a href="${pageContext.request.contextPath }/quantri/suakythi/${item.id}" class="btn btn-default">Sửa</a>
 								</td>
 							</tr>               		
                 		</c:forEach>
@@ -107,7 +119,17 @@
 								<td>
 									${item.thoiGianThi }
 								</td>
-								<td>	
+								<td>
+									<form
+											action="${pageContext.request.contextPath }/quantri/xoakythi"
+											method="post">
+										<input type="hidden" name="id" value="${item.id }" />
+										<button class="btn btn-default"
+												onClick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</button>
+									</form>	
+								</td>
+								<td>
+									<a href="${pageContext.request.contextPath }/quantri/suakythi/${item.id}" class="btn btn-default">Sửa</a>
 								</td>
 							</tr>               		
                 		</c:forEach>

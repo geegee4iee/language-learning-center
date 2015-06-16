@@ -25,4 +25,8 @@ public class DangKyKhoaHocBUS {
 	public boolean register(DangKyKhoaHocId dkId) {
 		return new DangKyKhoaHocDAO().register(dkId);
 	}
+
+	public boolean removeReg(DangKyKhoaHocId dkId) {
+		return new DangKyKhoaHocDAO().removeReg(dkId);
+	}
 }

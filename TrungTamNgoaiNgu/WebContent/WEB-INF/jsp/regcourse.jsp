@@ -37,6 +37,7 @@
 								<th>Học viên</th>
 								<th>Số điện thoại</th>
 								<th></th>
+								<th></th>
                 			</tr>
                 		</thead>
                 		<c:forEach items="${lst }" var="item">
@@ -61,6 +62,18 @@
 										<button
 												onClick="return confirm('Bạn có chắc chắn muốn đăng ký cho học viên này?')"
 												class="btn btn-primary">Đăng ký</button>
+									</form>
+								</td>
+								<td>
+									<form
+											action="${pageContext.request.contextPath }/quantri/xoadangkykhoahoc"
+											method="post">
+										<input type="hidden" name="idHocVien"
+												value="${item.id.idHocVien }" />
+										<input type="hidden" name="idKhoaHoc"
+												value="${item.id.idKhoaHoc }" />
+										<button class="btn btn-default"
+												onClick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</button>
 									</form>
 								</td>
 							</tr>               		

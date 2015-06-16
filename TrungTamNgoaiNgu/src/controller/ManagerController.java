@@ -110,6 +110,15 @@ public class ManagerController {
 		return "redirect:/quantri/nhanvien";
 	}
 
+	@RequestMapping(value = "/xoanhanvien", method = RequestMethod.POST)
+	public String removeStaff(@RequestParam("id") int idNhanVien) {
+		if (new NhanVienBUS().remove(idNhanVien) == true) {
+		} else {
+		}
+
+		return "redirect:/quantri/nhanvien";
+	}
+
 	@RequestMapping(value = "/phanhoi", method = RequestMethod.GET)
 	public String listFeedback(ModelMap m) {
 		m.addAttribute("lst", new PhanHoiBUS().getAll());
@@ -200,6 +209,27 @@ public class ManagerController {
 		return "redirect:/quantri/dangkykhoahoc";
 	}
 
+	@RequestMapping(value = "/xoadangkykhoahoc", method = RequestMethod.POST)
+	public String removeRegCourse(@RequestParam("idHocVien") int idHocVien,
+			@RequestParam("idKhoaHoc") int idKhoaHoc) {
+		if (new DangKyKhoaHocBUS().removeReg(new DangKyKhoaHocId(idHocVien,
+				idKhoaHoc)) == true) {
+		} else {
+		}
+
+		return "redirect:/quantri/dangkykhoahoc";
+	}
+
+	@RequestMapping(value = "/xoadangkythi", method = RequestMethod.POST)
+	public String removeRegExam(@RequestParam("idHocVien") int idHocVien,
+			@RequestParam("idKyThi") int idKyThi) {
+		if (new KyThiBUS().removeReg(new DangKyThiId(idKyThi, idHocVien)) == true) {
+		} else {
+		}
+
+		return "redirect:/quantri/dangkythi";
+	}
+
 	@RequestMapping(value = "/dangkythi", method = RequestMethod.GET)
 	public String viewRegExam(ModelMap m) {
 		List<DangKyThi> lst = new KyThiBUS().getUnReg();
@@ -263,13 +293,29 @@ public class ManagerController {
 		return "addkythi";
 	}
 
-	@RequestMapping(value = "/themkythi", method = RequestMethod.POST)
+	@RequestMapping(value = "/suakythi", method = RequestMethod.POST)
 	public String addKyThi(@ModelAttribute("obj") KythiManagerModel ktModel) {
-		if (new KyThiBUS().add(ktModel) == true) {
+		if (new KyThiBUS().update(ktModel) == true) {
 		} else {
 		}
 
 		return "redirect:/quantri/kythi";
+	}
+
+	@RequestMapping(value = "/xoakythi", method = RequestMethod.POST)
+	public String removeKyThi(@RequestParam("id") int idKyThi) {
+		if (new KyThiBUS().remove(idKyThi) == true) {
+		} else {
+		}
+
+		return "redirect:/quantri/kythi";
+	}
+
+	@RequestMapping(value = "/suakythi/{id}", method = RequestMethod.GET)
+	public String viewAddKyThi(ModelMap m, @PathVariable("id") int idKyThi) {
+		m.addAttribute("obj", new KyThiBUS().getKyThiModel(idKyThi));
+
+		return "editkythi";
 	}
 
 	@RequestMapping(value = "/chuyende", method = RequestMethod.GET)

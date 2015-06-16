@@ -3,6 +3,7 @@ package dao;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import model.NhanVienInfoModel;
 import model.NhanVienManagerModel;
@@ -12,6 +13,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import pojo.ChuDe;
 import pojo.NhanVien;
 import pojo.TaiKhoan;
 import pojo.VaiTro;
@@ -135,6 +137,37 @@ public class NhanVienDAO {
 			nv.setSoDienThoai(model.getSoDienThoai());
 
 			sess.update(nv);
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sess.getTransaction().rollback();
+			return false;
+		}
+
+		return true;
+	}
+
+	public boolean remove(int idNhanVien) {
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+
+		try {
+			sess.getTransaction().begin();
+			NhanVien nv = (NhanVien) sess.load(NhanVien.class, idNhanVien);
+			Set<ChuDe> setCd = nv.getChuDes();
+			TaiKhoan tk = nv.getTaiKhoan();
+
+			if (tk.getQuyenHan().getId() != 4) {
+				for (ChuDe cd : setCd) {
+					cd.setNhanVien(null);
+					sess.update(cd);
+				}
+
+				sess.delete(nv);
+				sess.delete(tk);
+			}
+
 			sess.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

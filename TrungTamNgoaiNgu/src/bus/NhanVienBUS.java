@@ -14,6 +14,10 @@ public class NhanVienBUS {
 		return new NhanVienDAO().get(nhanVien);
 	}
 
+	public boolean remove(int idNhanVien) {
+		return new NhanVienDAO().remove(idNhanVien);
+	}
+
 	public NhanVienInfoModel getInfoModel(int idNhanVien) {
 		NhanVien nv = new NhanVienDAO().get(idNhanVien);
 		NhanVienInfoModel model = new NhanVienInfoModel();

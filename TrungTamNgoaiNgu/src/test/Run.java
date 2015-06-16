@@ -3,13 +3,18 @@ package test;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
 import dao.KyThiDAO;
 import model.HighScoreModel;
 import model.KhoaHocManagerModel;
 import model.LichHocManagerModel;
+import pojo.ChuDe;
 import pojo.KhoaHoc;
 import pojo.KyThi;
 import pojo.PhanHoiHocVien;
+import utils.ConnectionFactory;
 import utils.DateFormat;
 import bus.KhoaHocBUS;
 import bus.KyThiBUS;
@@ -26,11 +31,14 @@ public class Run {
 		 * lh.setThoiGianHoc("05/07/2015 7:28 PM"); LichHocBUS bus = new
 		 * LichHocBUS(); bus.add(lh);
 		 */
-		List<KyThi> kh = new KyThiBUS().getRegByHocVien(1);
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+		sess.getTransaction().begin();
+		ChuDe cd = (ChuDe) sess.load(ChuDe.class, 3);
+		cd.setNhanVien(null);
+		sess.update(cd);
+		sess.getTransaction().commit();
 		
-		for(KyThi k:kh){
-			System.out.println(k.getTen());
-		}
 	}
 
 }
