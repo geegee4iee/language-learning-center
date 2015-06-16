@@ -7,7 +7,6 @@
 
 
 <t:user_layout title="Đăng nhập">
-
 	<jsp:attribute name="js">
 	    <script src="${pageContext.request.contextPath }/resources/js/jquery.validate.min.js"></script>
 	    <script type="text/javascript">
@@ -19,7 +18,7 @@
 	                    },
 	                    password: {
 	                        required: true
-	                    }
+	                    },
 	                },
 	
 	                messages: {
