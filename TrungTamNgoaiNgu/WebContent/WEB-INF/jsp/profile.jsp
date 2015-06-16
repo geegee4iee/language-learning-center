@@ -178,7 +178,7 @@
 			 					<a href="${pageContext.request.contextPath }/khoahoc/lichhoc/${item.id}" class="btn btn-default"> Chi tiết</a>
 			 				</td>
 			 				<td>
-			 					<a href="" class="btn btn-default"> Xem</a>
+			 					<a href="${pageContext.request.contextPath }/account/notify/${item.id}" class="btn btn-default"> Xem</a>
 			 				</td>
 		 				</tr>
 		 			</c:forEach>

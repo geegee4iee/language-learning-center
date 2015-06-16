@@ -4,8 +4,11 @@
 pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="i18n.ttan" />
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${language}">
   <head>
     <!--=============================================== 
     Template Design By WpFreeware Team.
@@ -97,9 +100,9 @@ pageEncoding="UTF-8"%>
             <div id="navbar" class="navbar-collapse collapse navbar-left">
 			
               <ul id="top-menu" class="nav navbar-nav  main-nav">
-                <li class="active"><a href="${pageContext.request.contextPath }/home/index">TRANG CHỦ</a></li>
-                <li><a href="${pageContext.request.contextPath }/khoahoc/danhsach">KHÓA HỌC</a></li>
-                <li><a href="${pageContext.request.contextPath }/kythi/danhsach">KỲ THI</a></li>
+                <li class="active"><a href="${pageContext.request.contextPath }/home/index"><fmt:message key="menu.label.home" /></a></li>
+                <li><a href="${pageContext.request.contextPath }/khoahoc/danhsach"><fmt:message key="menu.label.course" /></a></li>
+                <li><a href="${pageContext.request.contextPath }/kythi/danhsach"><fmt:message key="menu.label.exam" /></a></li>
               </ul>
            
             </div><!--/.nav-collapse -->
@@ -114,12 +117,12 @@ pageEncoding="UTF-8"%>
 							%>
 							<li>
 								<a href="${pageContext.request.contextPath}/account/profile">
-									<%out.print("Xin chào " + log.getName());%>
+									<fmt:message key="menu.label.hello" /><%out.print(log.getName());%>
 								</a>
 							</li>
 							<li>
 								<a href="${pageContext.request.contextPath}/account/logout">
-									THOÁT
+									<fmt:message key="menu.label.logout" />
 								</a>
 							</li>		
 									
@@ -127,9 +130,9 @@ pageEncoding="UTF-8"%>
 								}else{
 							%>
 							
-							<li><a href="${pageContext.request.contextPath}/account/register">ĐĂNG KÝ</a></li>
+							<li><a href="${pageContext.request.contextPath}/account/register"><fmt:message key="menu.label.register" /></a></li>
 
-							<li><a href="${pageContext.request.contextPath}/account/login">ĐĂNG NHẬP</a></li>
+							<li><a href="${pageContext.request.contextPath}/account/login"><fmt:message key="menu.label.login" /></a></li>
 							<%} %>
               </ul>
            
@@ -141,6 +144,12 @@ pageEncoding="UTF-8"%>
 				</div>
 				<button type="submit" class="btn btn-default">Tìm kiếm</button>
 			</form>
+			<form class="navbar-form navbar-right ">
+	            <select id="language" name="language" class="form-control" onchange="submit()">
+	                <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
+	                <option value="vn" ${language == 'vn' ? 'selected' : ''}>Việt Nam</option>
+	            </select>
+        	</form>
           </div>     
         </nav>  
       </div>
@@ -194,10 +203,6 @@ pageEncoding="UTF-8"%>
     </section>
     <!--=========== END SLIDER SECTION ================-->
 
-    <!--=========== BEGIN ABOUT US SECTION ================-->
-	
-	<!--=========== END ABOUT US SECTION ================--> 
-
     <!--=========== BEGIN WHY US SECTION ================-->
     <section id="whyUs">
       <!-- Start why us top -->
@@ -209,7 +214,7 @@ pageEncoding="UTF-8"%>
               <div class="row">
                 <div class="col-lg-12 col-md-12"> 
                   <div class="title_area">
-                    <h2 class="title_two">Why Us</h2>
+                    <h2 class="title_two"><fmt:message key="body.label.whyus" /></h2>
                     <span></span> 
                   </div>
                 </div>
@@ -222,8 +227,8 @@ pageEncoding="UTF-8"%>
                     <div class="whyus_icon">
                       <span class="fa fa-desktop"></span>
                     </div>
-                    <h3>Technology</h3>
-                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                    <h3><fmt:message key="body.title.technology" /></h3>
+                    <p><fmt:message key="body.content.technology" /></p>
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3">
@@ -274,7 +279,7 @@ pageEncoding="UTF-8"%>
         <div class="row">
           <div class="col-lg-12 col-md-12"> 
             <div class="title_area">
-              <h2 class="title_two">Danh sách khóa học</h2>
+              <h2 class="title_two">DANH SÁCH KHÓA HỌC</h2>
               <span></span> 
             </div>
           </div>
