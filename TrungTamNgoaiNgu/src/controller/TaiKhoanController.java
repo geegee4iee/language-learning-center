@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,12 +34,14 @@ import bus.KhoaHocBUS;
 import bus.KyThiBUS;
 import bus.PhanHoiBUS;
 import bus.TaiKhoanBUS;
+import bus.ThongBaoBUS;
 import pojo.ChuDe;
 import pojo.HocVien;
 import pojo.KhoaHoc;
 import pojo.KyThi;
 import pojo.QuyenHan;
 import pojo.TaiKhoan;
+import pojo.ThongBaoKhoaHoc;
 import utils.ConnectionFactory;
 import utils.CookieHelper;
 import utils.EncryptPassword;
@@ -258,5 +261,18 @@ public class TaiKhoanController {
 		m.addAttribute("statusFeedback", status);
 
 		return "redirect:/account/profile";
+	}
+
+	@RequestMapping(value = "/notify/{id}", method = RequestMethod.GET)
+	public String viewFeedback(@PathVariable("id") int idKhoaHoc, ModelMap m,
+			HttpSession session) {
+		if (session.getAttribute("acc") == null) {
+			return "redirect:/home/index";
+		}
+
+		List<ThongBaoKhoaHoc> lstTb = new ThongBaoBUS().getAll(idKhoaHoc);
+
+		m.addAttribute("lstTb", lstTb);
+		return "taikhoannotify";
 	}
 }
