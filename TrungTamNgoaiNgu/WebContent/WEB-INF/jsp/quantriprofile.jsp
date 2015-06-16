@@ -32,7 +32,7 @@
                 <div class="row">
                 	<div class="col-md-5">
                 		<f:form commandName="obj" method="POST"
-							action="${pageContext.request.contextPath }/quantri/changeInfo"> 
+							action="${pageContext.request.contextPath }/quantri/changeinfo" id="changeInfo"> 
                 			<div class="form-group">
                 				<label>Mã nhân viên</label>
                 				<f:input class="form-control" readonly="true"
@@ -57,6 +57,8 @@
                 			</div>
                 			<button class="btn btn-default">Cập nhập</button>
                 			<a href="${pageContext.request.contextPath }/quantri/nhanvien" class="btn btn-default">Trở lại</a>
+                			<br/>
+                			${param.status}
                 		</f:form>
                 	</div>
                 </div>

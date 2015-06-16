@@ -27,6 +27,10 @@ public class NhanVienBUS {
 		return model;
 	}
 
+	public boolean update(NhanVienInfoModel model) {
+		return new NhanVienDAO().update(model);
+	}
+
 	public NhanVien get(String taiKhoan) {
 		return new NhanVienDAO().get(taiKhoan);
 	}

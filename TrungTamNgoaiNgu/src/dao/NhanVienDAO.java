@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.NhanVienInfoModel;
 import model.NhanVienManagerModel;
 
 import org.hibernate.HibernateException;
@@ -52,12 +53,12 @@ public class NhanVienDAO {
 
 		return nv;
 	}
-	
-	public NhanVien get(String taiKhoan){
+
+	public NhanVien get(String taiKhoan) {
 		NhanVien nv = null;
 		SessionFactory fac = ConnectionFactory.getSessionFactory();
 		Session sess = fac.openSession();
-		
+
 		try {
 			sess.getTransaction().begin();
 			TaiKhoan tk = (TaiKhoan) sess.load(TaiKhoan.class, taiKhoan);
@@ -69,7 +70,7 @@ public class NhanVienDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return nv;
 	}
 
@@ -119,4 +120,30 @@ public class NhanVienDAO {
 
 		return true;
 	}
+
+	public boolean update(NhanVienInfoModel model) {
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+
+		try {
+			sess.getTransaction().begin();
+			NhanVien nv = (NhanVien) sess.load(NhanVien.class, model.getId());
+			nv.setHoTen(model.getHoTen());
+			nv.setDiaChi(model.getDiaChi());
+			nv.setNgaySinh(new DateFormat().getDate(model.getNgaySinh(),
+					DateFormat.FORMAT_2));
+			nv.setSoDienThoai(model.getSoDienThoai());
+
+			sess.update(nv);
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sess.getTransaction().rollback();
+			return false;
+		}
+
+		return true;
+	}
+
 }

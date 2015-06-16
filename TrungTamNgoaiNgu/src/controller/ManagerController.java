@@ -12,6 +12,7 @@ import java.util.List;
 import javassist.compiler.ast.Stmnt;
 import model.ChuDeManagerModel;
 import model.KythiManagerModel;
+import model.NhanVienInfoModel;
 import model.NhanVienManagerModel;
 import model.RegisterModel;
 import model.TaiKhoanManagerModel;
@@ -325,5 +326,18 @@ public class ManagerController {
 		m.addAttribute("obj", new NhanVienBUS().getInfoModel(idNhanVien));
 
 		return "quantriprofile";
+	}
+
+	@RequestMapping(value = "/changeinfo", method = RequestMethod.POST)
+	public String changeProfile(
+			@ModelAttribute("obj") NhanVienInfoModel nvModel, ModelMap m) {
+		String status = "Cập nhâp thành công";
+		if (new NhanVienBUS().update(nvModel) == true) {
+		} else {
+			status = "Cập nhập thất bại";
+		}
+
+		m.addAttribute("status", status);
+		return "redirect:/quantri/profile/" + nvModel.getId();
 	}
 }

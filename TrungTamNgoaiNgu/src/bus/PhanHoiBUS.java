@@ -21,4 +21,8 @@ public class PhanHoiBUS {
 	public List<PhanHoiHocVien> getAllNew(int quantity) {
 		return new PhanHoiDAO().getAllNew(quantity);
 	}
+
+	public boolean add(int idHocVien, String noiDung) {
+		return new PhanHoiDAO().add(idHocVien, noiDung);
+	}
 }

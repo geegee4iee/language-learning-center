@@ -120,4 +120,27 @@ public class PhanHoiDAO {
 
 		return true;
 	}
+
+	public boolean add(int idHocVien, String noiDung) {
+		PhanHoiHocVienId phId = new PhanHoiHocVienId(idHocVien, new Date());
+		PhanHoiHocVien ph = new PhanHoiHocVien();
+		ph.setId(phId);
+		ph.setNoiDung(noiDung);
+
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+
+		try {
+			sess.getTransaction().begin();
+			sess.save(ph);
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sess.getTransaction().rollback();
+			return false;
+		}
+
+		return true;
+	}
 }

@@ -31,6 +31,7 @@ import bus.ChuDeBUS;
 import bus.HocVienBUS;
 import bus.KhoaHocBUS;
 import bus.KyThiBUS;
+import bus.PhanHoiBUS;
 import bus.TaiKhoanBUS;
 import pojo.ChuDe;
 import pojo.HocVien;
@@ -241,6 +242,20 @@ public class TaiKhoanController {
 		} else {
 
 		}
+
+		return "redirect:/account/profile";
+	}
+
+	@RequestMapping(value = "/feedback", method = RequestMethod.POST)
+	public String sendFeedback(@RequestParam("id") int idHocVien,
+			@RequestParam("noiDung") String noiDung, ModelMap m) {
+		String status = "Thêm phản hồi thành công";
+		if (new PhanHoiBUS().add(idHocVien, noiDung) == true) {
+		} else {
+			status = "Thêm phản hồi thất bại";
+		}
+
+		m.addAttribute("statusFeedback", status);
 
 		return "redirect:/account/profile";
 	}
