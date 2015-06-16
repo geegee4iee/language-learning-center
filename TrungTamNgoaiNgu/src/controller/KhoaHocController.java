@@ -46,6 +46,19 @@ public class KhoaHocController {
 		return "danhsachkhoahoc";
 	}
 
+	@RequestMapping(value = "/timkiem", method = RequestMethod.GET)
+	public String search(@RequestParam("content") String content, ModelMap m) {
+		List<KhoaHoc> lst = new KhoaHocBUS().get(content);
+		List<KhoaHoc> kh = new KhoaHocBUS().getStarted(lst);
+		List<KhoaHoc> khUn = new KhoaHocBUS().getUnStartKhoaHoc(lst);
+		List<ChuDe> cd = new ChuDeBUS().getAll();
+		
+		m.addAttribute("lstKh", kh);
+		m.addAttribute("lstKhUn", khUn);
+		m.addAttribute("lstCd", cd); // Danh sách chủ đề
+		return "danhsachkhoahoc";
+	}
+
 	@RequestMapping(value = "/lichhoc/{id}", method = RequestMethod.GET)
 	public String getSchedule(ModelMap m, @PathVariable("id") int khoaHoc) {
 		List<LichHoc> lh = new LichHocBUS().getAll(khoaHoc);

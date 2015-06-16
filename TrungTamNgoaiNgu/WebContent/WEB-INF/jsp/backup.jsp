@@ -14,39 +14,47 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Blank Page
-                            <small>Subheading</small>
+                            Sao lưu phục hồi dữ liệu
+                            <small>cho hệ thống</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a
-								href="index.html">Dashboard</a>
+                                <a
+								href="${pageContext.request.contextPath }/quantri/backup">Sao lưu phục hồi</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-file"></i> Blank Page
+                                Trang hiện tại
                             </li>
                         </ol>
                     </div>
                 </div>
                 <!-- /.row -->
                 <div class="row">
-                	<div class="col-md-5">
-                		<form
+                	<div class="col-md-12">
+                	<div class="jumbotron">
+ 					 	<form
 							action="${pageContext.request.contextPath }/quantri/backup"
 							method="POST">
                 			<button class="btn btn-primary"
 								onClick="return confirm('Bạn có chắc chắn muốn sao lưu?')">Sao lưu dữ liệu</button>
                 		</form>
-                		<form
+                		<p>Lần cập nhập gần nhất: ${modTime }</p>
+					</div>
+					<div class="jumbotron">
+						<form
 							action="${pageContext.request.contextPath }/quantri/restore"
 							method="POST">
                 			<button class="btn btn-warning"
 								onClick="return confirm('Bạn có chắc chắn muốn phục hồi?')">Phục hồi dữ liệu</button>
                 		</form>
+                		<p>Lần phục hồi gần nhất: ${restoreTime }</p>
+					</div>
+                		
+                		
                 	</div>
                 	${status }
-                	Lần cập nhập gần nhất: ${modTime }
-                	Lần phục hồi gần nhất: ${restoreTime }
+                	
+                	
                 </div>
 
             </div>

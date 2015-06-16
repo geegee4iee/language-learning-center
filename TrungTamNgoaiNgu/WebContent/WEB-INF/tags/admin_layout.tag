@@ -8,7 +8,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>${title}</title>
+<title>Trang quản lý</title>
 <link href="<c:url value="/resources/css/bootstrap.min.css" />"
 	rel="stylesheet" type="text/css" />
 <link
@@ -56,9 +56,9 @@
 							<form method="POST"
 								action="${pageContext.request.contextPath }/tknhanvien/dangxuat">
 								<input type="submit" id="submit-button" style="display: none" />
-								<a href="#" onclick="$('#submit-button').click();"><i
-									class="fa fa-sign-out fa-fw"></i> Logout</a>
 							</form>
+							<a href="#" onclick="$('#submit-button').click();"><i
+									class="fa fa-sign-out fa-fw"></i> Logout</a>
 						</li>
 					</ul> <!-- /.dropdown-user --></li>
 				<!-- /.dropdown -->
@@ -94,6 +94,9 @@
 									href="${pageContext.request.contextPath }/quantri/chuyende"><i
 										class="fa fa-dashboard fa-fw"></i> Quản lý chuyên đề</a></li>
 								<li><a
+									href="${pageContext.request.contextPath }/quantri/kythi"><i
+										class="fa fa-language fa-fw"></i>Quản lý kỳ thi</a></li>
+								<li><a
 									href="${pageContext.request.contextPath }/quantri/phanhoi"><i
 										class="fa fa-comments fa-fw"></i> Quản lý phản hồi</a></li>
 								<li><a
@@ -102,13 +105,10 @@
 
 								<li><a
 									href="${pageContext.request.contextPath }/quantri/dangkykhoahoc"><i
-										class="fa fa-comments fa-fw"></i>Đăng ký khóa học</a></li>
+										class="fa fa-check-circle fa-fw"></i>Đăng ký khóa học</a></li>
 								<li><a
 									href="${pageContext.request.contextPath }/quantri/dangkythi"><i
-										class="fa fa-comments fa-fw"></i>Đăng ký thi</a></li>
-								<li><a
-									href="${pageContext.request.contextPath }/quantri/kythi"><i
-										class="fa fa-comments fa-fw"></i>Quản lý kỳ thi</a></li>
+										class="fa fa-check-circle fa-fw"></i>Đăng ký thi</a></li>
 							</c:when>
 						</c:choose>
 					</ul>

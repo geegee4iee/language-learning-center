@@ -10,6 +10,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.loader.plan.exec.query.spi.QueryBuildingParameters;
 
 import pojo.ChuDe;
 import pojo.DangKyKhoaHoc;
@@ -158,6 +159,26 @@ public class KhoaHocDAO {
 			for (DangKyKhoaHoc dk : lstDk) {
 				lstKh.add(dk.getKhoaHoc());
 			}
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return lstKh;
+	}
+
+	public List<KhoaHoc> get(String content) {
+		List<KhoaHoc> lstKh = new ArrayList<KhoaHoc>();
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+
+		try {
+			sess.getTransaction().begin();
+			Query query = sess
+					.createQuery("from KhoaHoc where ten like :content");
+			query.setString("content",'%' + content.toLowerCase() + '%');
+			lstKh = query.list();
 			sess.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

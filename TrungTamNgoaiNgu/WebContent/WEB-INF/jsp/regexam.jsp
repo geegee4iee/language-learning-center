@@ -13,16 +13,14 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Blank Page
-                            <small>Subheading</small>
+                            Quản lý đăng ký thi
                         </h1>
                         <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a
-								href="index.html">Dashboard</a>
+                            <li>  <a
+								href="${pageContext.request.contextPath }/quantri/dangkythi">Đăng ký thi</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-file"></i> Blank Page
+                                 Trang hiện tại
                             </li>
                         </ol>
                     </div>

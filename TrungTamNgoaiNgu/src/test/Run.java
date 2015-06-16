@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import dao.KhoaHocDAO;
 import dao.KyThiDAO;
 import model.HighScoreModel;
 import model.KhoaHocManagerModel;
@@ -31,13 +32,12 @@ public class Run {
 		 * lh.setThoiGianHoc("05/07/2015 7:28 PM"); LichHocBUS bus = new
 		 * LichHocBUS(); bus.add(lh);
 		 */
-		SessionFactory fac = ConnectionFactory.getSessionFactory();
-		Session sess = fac.openSession();
-		sess.getTransaction().begin();
-		ChuDe cd = (ChuDe) sess.load(ChuDe.class, 3);
-		cd.setNhanVien(null);
-		sess.update(cd);
-		sess.getTransaction().commit();
+		List<KhoaHoc> lstKh = new KhoaHocDAO().get("test");
+		System.out.println(lstKh.size());
+		
+		for(KhoaHoc kh:lstKh){
+			System.out.println(kh.getTen());
+		}
 		
 	}
 
