@@ -41,6 +41,8 @@
 								<th>Chức vụ</th>
 								<th>Tạo tài khoản</th>
 								<th>Cập nhập lương</th>
+								<th></th>
+								<th></th>
                 			</tr>
                 		</thead>
                 		<c:forEach items="${lst }" var="item">
@@ -83,6 +85,11 @@
 										<button class="btn btn-default"
 												onClick="return confirm('Bạn có chắc chắn')">Cập nhập</button>
 									</form>
+								</td>
+								<td>
+									<a href="${pageContext.request.contextPath }/quantri/profile/${item.id}" class="btn btn-default">Sửa thông tin</a>
+								</td>
+								<td>
 								</td>
 							</tr>               		
                 		</c:forEach>

@@ -13,6 +13,7 @@ import pojo.KyThi;
 
 public class KyThiBUS {
 
+	
 	public List<KyThi> getAll() {
 		return new KyThiDAO().getAll();
 	}

@@ -3,13 +3,28 @@ package bus;
 import java.math.BigDecimal;
 import java.util.List;
 
+import model.NhanVienInfoModel;
 import model.NhanVienManagerModel;
 import dao.NhanVienDAO;
 import pojo.NhanVien;
+import utils.DateFormat;
 
 public class NhanVienBUS {
 	public NhanVien get(int nhanVien) {
 		return new NhanVienDAO().get(nhanVien);
+	}
+
+	public NhanVienInfoModel getInfoModel(int idNhanVien) {
+		NhanVien nv = new NhanVienDAO().get(idNhanVien);
+		NhanVienInfoModel model = new NhanVienInfoModel();
+		model.setId(nv.getId());
+		model.setHoTen(nv.getHoTen());
+		model.setDiaChi(nv.getDiaChi());
+		model.setSoDienThoai(nv.getSoDienThoai());
+		model.setNgaySinh(new DateFormat().getDateString(nv.getNgaySinh(),
+				DateFormat.FORMAT_2));
+
+		return model;
 	}
 
 	public NhanVien get(String taiKhoan) {

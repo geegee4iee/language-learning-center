@@ -319,4 +319,11 @@ public class ManagerController {
 
 		return "redirect:/quantri/chuyende";
 	}
+
+	@RequestMapping(value = "/profile/{id}", method = RequestMethod.GET)
+	public String viewProfile(@PathVariable("id") int idNhanVien, ModelMap m) {
+		m.addAttribute("obj", new NhanVienBUS().getInfoModel(idNhanVien));
+
+		return "quantriprofile";
+	}
 }

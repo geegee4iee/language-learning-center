@@ -1,6 +1,6 @@
 package model;
 
-public class HocVienUpdateModel {
+public class NhanVienInfoModel {
 	private int id;
 	private String hoTen;
 	private String diaChi;

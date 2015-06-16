@@ -65,7 +65,7 @@ public class ChuDeDAO {
 		try {
 			sess.getTransaction().begin();
 			Query query = sess
-					.createQuery("from ChuDe where IdNhanVien!=:idStaff");
+					.createQuery("from ChuDe where IdNhanVien!=:idStaff or IdNhanVien=null");
 			query.setParameter("idStaff", idStaff);
 			lst = query.list();
 			sess.getTransaction().commit();

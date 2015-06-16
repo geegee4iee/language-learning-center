@@ -26,11 +26,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import dao.KyThiDAO;
 import bus.ChuDeBUS;
 import bus.HocVienBUS;
+import bus.KhoaHocBUS;
+import bus.KyThiBUS;
 import bus.TaiKhoanBUS;
 import pojo.ChuDe;
 import pojo.HocVien;
+import pojo.KhoaHoc;
+import pojo.KyThi;
 import pojo.QuyenHan;
 import pojo.TaiKhoan;
 import utils.ConnectionFactory;
@@ -192,12 +197,18 @@ public class TaiKhoanController {
 
 		HocVien hv = new HocVienBUS().getHocVien(acc.getId());
 		HocVienInfoModel hvModel = new HocVienBUS().toHocVienInfo(hv);
+		List<KyThi> lstKt = new KyThiBUS().getRegByHocVien(hv.getId());
+		List<KhoaHoc> lstKh = new KhoaHocBUS().getRegByHocVien(hv.getId());
+		List<ChuDe> lstCd = new ChuDeBUS().getAll();
 		AccountUpdateModel pwd = new AccountUpdateModel();
 		pwd.setId(acc.getId());
 
-		// Add HocVien model and AccountUpdateModel to view
+		// Add all student's information to profile's view
 		m.addAttribute("objHv", hvModel);
 		m.addAttribute("objPwd", pwd);
+		m.addAttribute("lstKh", lstKh);
+		m.addAttribute("lstKt", lstKt);
+		m.addAttribute("lstCd", lstCd);
 
 		return "profile";
 	}
