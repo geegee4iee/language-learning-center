@@ -51,7 +51,7 @@
 										onClick="return confirm('Bạn có chắc chắn muốn xóa!?')">Xóa phản hồi</button>
 							</form>
                 		 	<a
-									href="${pageContext.request.contextPath }/quantri/xemphanhoi?thoiGian=<fmt:formatDate pattern="MM/dd/yyyy HH:mm"
+									href="${pageContext.request.contextPath }/quantri/xemphanhoi?thoiGian=<fmt:formatDate pattern="MM/dd/yyyy HH:mm:ss.SSS"
 											value="${item.id.thoiGian }" />&hocVien=${item.id.idHocVien}"
 									class="list-group-item">
     							<h4 class="list-group-item-heading">

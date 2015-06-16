@@ -82,7 +82,7 @@ public class PhanHoiDAO {
 
 	public PhanHoiHocVien get(int hocVien, String thoiGian) {
 		PhanHoiHocVienId phId = new PhanHoiHocVienId(hocVien,
-				new DateFormat().getDateTimeNoSplit(thoiGian));
+				new DateFormat().getDate(thoiGian, "MM/dd/yyyy HH:mm:ss.SSS"));
 		PhanHoiHocVien ph = null;
 		SessionFactory fac = ConnectionFactory.getSessionFactory();
 		Session sess = fac.openSession();
