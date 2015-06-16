@@ -78,7 +78,7 @@ public class DateFormat {
 	}
 
 	public Date getDateTime(String dtStr) {
-		SimpleDateFormat sdf = new SimpleDateFormat("mm/dd/yyyy h:mm aa");
+		SimpleDateFormat sdf = new SimpleDateFormat(FORMAT_3);
 		Date dateNew = new Date();
 
 		try {
