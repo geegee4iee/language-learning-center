@@ -138,11 +138,11 @@ pageEncoding="UTF-8"%>
            
             </div><!--/.nav-collapse -->
             
-			<form class="navbar-form navbar-right " role="search">
+			<form class="navbar-form navbar-right" action="${pageContext.request.contextPath}/khoahoc/timkiem" method="get" role="search">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Search">
+					<input type="text" class="form-control" name="content" placeholder="Search">
 				</div>
-				<button type="submit" class="btn btn-default">Tìm kiếm</button>
+				<button type="submit" class="btn btn-default"><fmt:message key="menu.button.search" /></button>
 			</form>
 			<form class="navbar-form navbar-right ">
 	            <select id="language" name="language" class="form-control" onchange="submit()">
@@ -168,8 +168,8 @@ pageEncoding="UTF-8"%>
                 <li>
                   <img src="${pageContext.request.contextPath }/resources/img/slider/2.jpg" alt="img">
                    <div class="slider_caption">
-                    <h2>Largest & Beautiful University</h2>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                    <h2><fmt:message key="slider.title.aboutus" /></h2>
+                    <p><fmt:message key="slider.content.aboutus" /></p>
                     <a class="slider_btn" href="#">Know More</a>
                   </div>
                   </li>
@@ -177,8 +177,8 @@ pageEncoding="UTF-8"%>
                 <li>
                   <img src="${pageContext.request.contextPath }/resources/img/slider/3.jpg" alt="img">
                    <div class="slider_caption slider_right_caption">
-                    <h2>Better Education Environment</h2>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search</p>
+                    <h2><fmt:message key="slider.title.quality" /></h2>
+                    <p><fmt:message key="slider.content.quality" /></p>
                     <a class="slider_btn" href="#">Know More</a>
                   </div>
                 </li>
@@ -186,8 +186,8 @@ pageEncoding="UTF-8"%>
                 <li>
                   <img src="${pageContext.request.contextPath }/resources/img/slider/4.jpg" alt="img">
                    <div class="slider_caption">
-                    <h2>Find out you in better way</h2>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search</p>
+                    <h2><fmt:message key="slider.title.ActiveLearning" /></h2>
+                    <p><fmt:message key="slider.content.ActiveLearning" /></p>
                     <a class="slider_btn" href="#">Know More</a>
                   </div>
                 </li>
@@ -236,8 +236,8 @@ pageEncoding="UTF-8"%>
                     <div class="whyus_icon">
                       <span class="fa fa-users"></span>
                     </div>
-                    <h3>Best Tutor</h3>
-                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                    <h3><fmt:message key="body.title.besttutor" /></h3>
+                    <p><fmt:message key="body.content.besttutor" /></p>
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3">
@@ -245,8 +245,8 @@ pageEncoding="UTF-8"%>
                     <div class="whyus_icon">
                       <span class="fa fa-flask"></span>
                     </div>
-                    <h3>Practical Training</h3>
-                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                    <h3><fmt:message key="body.title.PraticalTraining" /></h3>
+                    <p><fmt:message key="body.content.PraticalTraining" /></p>
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3">
@@ -254,8 +254,8 @@ pageEncoding="UTF-8"%>
                     <div class="whyus_icon">
                       <span class="fa fa-support"></span>
                     </div>
-                    <h3>Support</h3>
-                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                    <h3><fmt:message key="body.title.support" /></h3>
+                    <p><fmt:message key="body.content.support" /></p>
                   </div>
                 </div>
               </div>
@@ -279,7 +279,7 @@ pageEncoding="UTF-8"%>
         <div class="row">
           <div class="col-lg-12 col-md-12"> 
             <div class="title_area">
-              <h2 class="title_two">DANH SÁCH KHÓA HỌC</h2>
+              <h2 class="title_two"><fmt:message key="body.label.ourcourses" /></h2>
               <span></span> 
             </div>
           </div>
@@ -329,7 +329,7 @@ pageEncoding="UTF-8"%>
         <div class="row">
           <div class="col-lg-12 col-md-12"> 
             <div class="title_area">
-              <h2 class="title_two">NHỮNG HỌC VIÊN ĐIỂM CAO</h2>
+              <h2 class="title_two"><fmt:message key="body.label.StudentHighscore" /></h2>
               <span></span> 
             </div>
           </div>
@@ -380,7 +380,7 @@ pageEncoding="UTF-8"%>
         <div class="row">
           <div class="col-lg-12 col-md-12"> 
             <div class="title_area">
-              <h2 class="title_two">HỌC VIÊN NÓI GÌ VỀ CHÚNG TÔI</h2>
+              <h2 class="title_two"><fmt:message key="body.label.StudentSays" /></h2>
               <span></span> 
             </div>
           </div>
@@ -427,13 +427,13 @@ pageEncoding="UTF-8"%>
           <div class="row">
             <div class="col-ld-3  col-md-3 col-sm-3">
               <div class="single_footer_widget">
-                <h3>About Us</h3>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <h3><fmt:message key="footer.title.aboutus" /></h3>
+                <p><fmt:message key="footer.content.aboutus" /></p>
               </div>
             </div>
             <div class="col-ld-3  col-md-3 col-sm-3">
               <div class="single_footer_widget">
-                <h3>Community</h3>
+                <h3><fmt:message key="footer.label.community" /></h3>
                 <ul class="footer_widget_nav">
                   <li><a href="#">Our Tutors</a></li>
                   <li><a href="#">Our Students</a></li>
@@ -445,7 +445,7 @@ pageEncoding="UTF-8"%>
             </div>
             <div class="col-ld-3  col-md-3 col-sm-3">
               <div class="single_footer_widget">
-                <h3>Others</h3>
+                <h3><fmt:message key="footer.label.others" /></h3>
                 <ul class="footer_widget_nav">
                   <li><a href="#">Link 1</a></li>
                   <li><a href="#">Link 2</a></li>
@@ -457,7 +457,7 @@ pageEncoding="UTF-8"%>
             </div>
             <div class="col-ld-3  col-md-3 col-sm-3">
               <div class="single_footer_widget">
-                <h3>Social Links</h3>
+                <h3><fmt:message key="footer.label.SocialLinks" /></h3>
                 <ul class="footer_social">
                   <li><a data-toggle="tooltip" data-placement="top" title="Facebook" class="soc_tooltip" href="#"><i class="fa fa-facebook"></i></a></li>
                   <li><a data-toggle="tooltip" data-placement="top" title="Twitter" class="soc_tooltip"  href="#"><i class="fa fa-twitter"></i></a></li>
