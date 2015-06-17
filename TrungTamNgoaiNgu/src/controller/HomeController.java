@@ -23,7 +23,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Model m) {
-		List<KhoaHoc> lst = new KhoaHocBUS().getAll();
+		List<KhoaHoc> lst = new KhoaHocBUS().getUnStartKhoaHoc();
 		List<HighScoreModel> lstHs = new KyThiBUS().getHighScore();
 		List<PhanHoiHocVien> lstPh = new PhanHoiBUS().getAllNew(3);
 
