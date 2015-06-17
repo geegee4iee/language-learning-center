@@ -36,6 +36,7 @@ import bus.PhanHoiBUS;
 import bus.TaiKhoanBUS;
 import bus.ThongBaoBUS;
 import pojo.ChuDe;
+import pojo.DangKyThi;
 import pojo.HocVien;
 import pojo.KhoaHoc;
 import pojo.KyThi;
@@ -204,6 +205,7 @@ public class TaiKhoanController {
 		List<KyThi> lstKt = new KyThiBUS().getRegByHocVien(hv.getId());
 		List<KhoaHoc> lstKh = new KhoaHocBUS().getRegByHocVien(hv.getId());
 		List<ChuDe> lstCd = new ChuDeBUS().getAll();
+		List<DangKyThi> lstScr = new KyThiBUS().getScores(hv.getId());
 		AccountUpdateModel pwd = new AccountUpdateModel();
 		pwd.setId(acc.getId());
 
@@ -213,6 +215,7 @@ public class TaiKhoanController {
 		m.addAttribute("lstKh", lstKh);
 		m.addAttribute("lstKt", lstKt);
 		m.addAttribute("lstCd", lstCd);
+		m.addAttribute("lstScore", lstScr);
 
 		return "profile";
 	}

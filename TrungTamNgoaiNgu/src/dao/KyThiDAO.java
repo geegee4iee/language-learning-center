@@ -358,4 +358,25 @@ public class KyThiDAO {
 
 		return lstKt;
 	}
+
+	public List<DangKyThi> getScores(int idHocVien) {
+		List<DangKyThi> lstDk = new ArrayList<DangKyThi>();
+		SessionFactory fac = ConnectionFactory.getSessionFactory();
+		Session sess = fac.openSession();
+
+		try {
+			sess.getTransaction().begin();
+			Query query = sess
+					.createQuery("from DangKyThi where idHocVien=:idHocVien and daDangKy=1");
+			query.setInteger("idHocVien", idHocVien);
+			lstDk = query.list();
+			sess.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return lstDk;
+	}
+
 }

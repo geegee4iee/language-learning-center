@@ -12,6 +12,7 @@ import model.HighScoreModel;
 import model.KhoaHocManagerModel;
 import model.LichHocManagerModel;
 import pojo.ChuDe;
+import pojo.DangKyThi;
 import pojo.KhoaHoc;
 import pojo.KyThi;
 import pojo.PhanHoiHocVien;
@@ -32,11 +33,10 @@ public class Run {
 		 * lh.setThoiGianHoc("05/07/2015 7:28 PM"); LichHocBUS bus = new
 		 * LichHocBUS(); bus.add(lh);
 		 */
-		List<KhoaHoc> lstKh = new KhoaHocDAO().get("test");
-		System.out.println(lstKh.size());
+		List<DangKyThi> lstDk = new KyThiBUS().getScores(1);
 		
-		for(KhoaHoc kh:lstKh){
-			System.out.println(kh.getTen());
+		for(DangKyThi kh:lstDk){
+			System.out.println(kh.getDiem());
 		}
 		
 	}

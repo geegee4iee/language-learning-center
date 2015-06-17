@@ -64,6 +64,19 @@ public class KyThiBUS {
 		return lstUn;
 	}
 
+	public List<KyThi> getStarted(List<KyThi> lst) {
+		List<KyThi> lstUn = new ArrayList<KyThi>();
+		Date curDate = new Date();
+
+		for (KyThi kt : lst) {
+			if (curDate.compareTo(kt.getThoiGianThi()) >= 0) {
+				lstUn.add(kt);
+			}
+		}
+
+		return lstUn;
+	}
+
 	public boolean updateScore(DangKyThiId id, double diem) {
 		return new KyThiDAO().updateScore(id, diem);
 	}
@@ -78,6 +91,21 @@ public class KyThiBUS {
 
 	public List<KyThi> getRegByHocVien(int idHocVien) {
 		return new KyThiDAO().getRegByHocVien(idHocVien);
+	}
+
+	public List<DangKyThi> getScores(int idHocVien) {
+		List<DangKyThi> lstDk = new KyThiDAO().getScores(idHocVien);
+		Date curDate = new Date();
+		List<DangKyThi> lstDkStarted = new ArrayList<DangKyThi>();
+		for (DangKyThi dk : lstDk) {
+			KyThi kt = dk.getKyThi();
+
+			if (curDate.compareTo(kt.getThoiGianThi()) >= 0) {
+				lstDkStarted.add(dk);
+			}
+		}
+
+		return lstDkStarted;
 	}
 
 	public boolean addDangKy(DangKyThiId id) {
